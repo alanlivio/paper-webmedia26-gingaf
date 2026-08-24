@@ -1,7 +1,7 @@
 [project]
 site_name = "gingaf: A Cross-Platform Architecture to Execute Ginga-NCL and Ginga-HTML5 Applications"
 site_description = "Ginga-HTML5 Applications. WebMedia 2026."
-site_author = "Alan L.V. Guedes"
+site_author = "Alan L. V. Guedes, Paulo Victor Borges, Daniel Moraes, Sergio Colcher"
 copyright = "Copyright &copy; 2026 The authors"
 extra_css = ["stylesheets/extra.css"]
 

@@ -4,9 +4,14 @@ template: "home.html"
 hide:
   - navigation
 authors:
-  - name: Alan L.V. Guedes
-    url: https://alanlivio.github.io
+  - name: Alan L. V. Guedes
     institution: University of Reading
+  - name: Paulo Victor Borges
+    institution: PUC-Rio
+  - name: Daniel Moraes
+    institution: PUC-Rio
+  - name: Sergio Colcher
+    institution: PUC-Rio
 conference: "WebMedia 2026"
 links:
   - name: Paper

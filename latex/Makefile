@@ -1,3 +1,5 @@
+MAKEFLAGS += -s --no-print-directory
+
 .PHONY: build clean zip
 
 build:

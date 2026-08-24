@@ -1,3 +1,5 @@
+MAKEFLAGS += -s --no-print-directory
+
 MAIN = main
 LATEX = latexmk -pdf -synctex=1 -interaction=nonstopmode
 
