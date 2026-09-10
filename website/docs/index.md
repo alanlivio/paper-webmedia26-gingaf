@@ -1,5 +1,5 @@
 ---
-title: "gingaf: A Cross-Platform Architecture to Execute Ginga-NCL and Ginga-HTML Applications"
+title: "gingaf: A Cross-Platform Architecture to Execute Ginga-NCL and Ginga-HTML5 Applications"
 template: "home.html"
 hide:
   - navigation
@@ -26,7 +26,7 @@ links:
   - name: LaTeX/Website Code
     url: https://github.com/alanlivio/paper-gingaf-webmedia26
     icon: ri:github-line
-description: "Ginga-HTML5 Applications. WebMedia 2026."
+description: "gingaf: A Cross-Platform Architecture to Execute Ginga-NCL and Ginga-HTML5 Applications. WebMedia 2026."
 ---
 
 <div class="abstract-container" markdown="1">
@@ -57,3 +57,16 @@ The following videos demonstrate the interactive Ginga Playground executing diff
     <video src="assets/playground-lua.mp4" controls style="width: 100%; border-radius: 0.5rem;"></video>
   </div>
 </div>
+
+## Citation
+
+```bibtex
+@inproceedings{gingaf_webmedia2026,
+  author    = {Guedes, Alan L. V. and Borges, Paulo Victor and Moraes, Daniel and Colcher, Sergio},
+  title     = {gingaf: A Cross-Platform Architecture to Execute Ginga-NCL and Ginga-HTML5 Applications},
+  booktitle = {Proceedings of the 32nd Brazilian Symposium on Multimedia and the Web},
+  location  = {Lavras, Brazil},
+  year      = {2026},
+  series    = {WebMedia '26}
+}
+```
