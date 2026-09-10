@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-Repository for the academic paper **gingaf: A Cross-Platform Architecture to Execute Ginga-NCL and Ginga-HTML5 Applications**.
+Website for the paper **gingaf: A Cross-Platform Architecture to Execute Ginga-NCL and Ginga-HTML5 Applications**.
 
 - `latex/` — LaTeX source
 - `website/` — static webpage using Zensical
