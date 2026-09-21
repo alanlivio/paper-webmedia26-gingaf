@@ -9,6 +9,47 @@ header: 'gingaf: Cross-Platform NCL & HTML5 Execution — WebMedia 2026'
 .grayscale {
   filter: grayscale(100%);
 }
+.grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 14px 28px;
+  width: 100%;
+  margin-top: 8px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 18px;
+  width: 100%;
+  margin-top: 18px;
+}
+.grid-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.grid-card img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  background-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.grid-card p {
+  margin: 8px 0 0 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1f2328;
+}
+.grid-card a {
+  color: #0969da;
+  font-weight: 700;
+  text-decoration: underline;
+}
 </style>
 
 <!--
@@ -23,12 +64,12 @@ _header: ""
 # gingaf: A Cross-Platform Architecture To Execute Ginga-NCL and Ginga-HTML5 Applications
 
 **Alan L. V. Guedes**$^1$, **Paulo Victor Borges**$^2$, **Daniel Moraes**$^2$, **Sergio Colcher**$^2$
-$^1$University of Reading, UK | $^2$PUC-Rio, Brazil
+$^1$Universidade de Reading, Reino Unido | $^2$PUC-Rio, Brasil
 
-*Proceedings of the Brazilian Symposium on Multimedia and the Web (WebMedia 2026)*
-Lavras/MG, Brazil
+*Anais do Simpósio Brasileiro de Sistemas Multimídia e Web (WebMedia 2026)*
+Lavras/MG, Brasil
 
-**Paper Website (slides, code, demo)**:
+**Website do Artigo (slides, código, demo)**:
 https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 </div>
@@ -47,27 +88,34 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 # Agenda
 
-- **Context**
-- **Proposed Solution**
-- **Results**
-- **Final Remarks**
+- **Contexto e Definição do Problema**
+- **Solução Proposta**
+- **Funcionalidades e Demo do gingaf**
+- **Considerações Finais**
 
 ---
 
-# Background: Ginga DTV Middleware
+<!-- _class: invert -->
+<!-- _paginate: skip -->
+
+# Contexto e Definição do Problema
+
+---
+
+# Contexto: O Middleware de DTV Ginga
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Standardization & Reach**
-- Defined by ITU-T H.761 and SBTVD ABNT 15606.
-- Deployed on 100% of certified Digital TV receivers across Brazil and Latin America (>60M viewers).
+**Padronização e Alcance**
+- Definido pela ITU-T H.761 e SBTVD ABNT 15606.
+- Instalado em 100% dos receptores de TV Digital certificados no Brasil e América Latina (>60M telespectadores).
 
-**Evolution of Ginga Subsystems**
-- **Ginga-NCL**: Declarative multimedia synchronization and formatting.
-- **NCLua**: Imperative scripting and dynamic canvas graphics.
-- **Ginga-HTML5 & CCWS**: Web-based applications with broadcast data access.
+**Evolução dos Subsistemas Ginga**
+- **Ginga-NCL**: Sincronização e formatação multimídia declarativa.
+- **NCLua**: Programação imperativa e gráficos dinâmicos em canvas.
+- **Ginga-HTML5 e CCWS**: Aplicações web com acesso a dados de transmissão (broadcast).
 
 </div>
 
@@ -81,22 +129,22 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# The Problem: Platform Tethering
+# O Problema: Acoplamento à Plataforma
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Heavyweight C++ Players**
-- Legacy implementations (PUC-Rio Ginga v0.13, v1.0) depend on platform-specific C++ frameworks (GTK, GStreamer, FFmpeg).
-- Target embedded Linux STB environments, preventing web deployment.
+**Reprodutores Pesados em C++**
+- Implementações legadas (Ginga v0.13, v1.0 da PUC-Rio) dependem de bibliotecas C++ específicas da plataforma (GTK, GStreamer, FFmpeg).
+- Focados em ambientes STB Linux embarcados, impedindo a execução web.
 
-**Tightly Coupled Presentation**
-- State machine evaluations block on native OS rendering calls (`draw()`).
-- Media objects trigger NCL transitions directly via system thread callbacks (`onEvent()`).
+**Apresentação Fortemente Acoplada**
+- Avaliações da máquina de estados bloqueiam em chamadas nativas de renderização do SO (`draw()`).
+- Objetos de mídia disparam transições NCL diretamente por callbacks de threads do sistema (`onEvent()`).
 
-**Web Incompatibility**
-- Sandboxed browser environments lack raw socket access and native POSIX threading.
+**Incompatibilidade com a Web**
+- Ambientes isolados (sandbox) de navegadores não possuem acesso a sockets brutos nem threads nativas POSIX.
 
 </div>
 
@@ -110,22 +158,29 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Layered Architecture: Subsystem Decoupling
+<!-- _class: invert -->
+<!-- _paginate: skip -->
+
+# Solução Proposta
+
+---
+
+# Arquitetura em Camadas: Desacoplamento de Subsistemas
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Strict Subsystem Separation**
-- Logic components are strictly separated from UI components.
+**Separação Estrita de Subsistemas**
+- Componentes de lógica são rigorosamente separados dos componentes de interface (UI).
 
-**Logic Layer (Pure Dart)**
-- `NCLDocument` (Parser, NCLua runtime) and `CCWS` (HTTPServer, router).
-- Compiles seamlessly to JavaScript and WebAssembly.
+**Camada de Lógica (Dart Puro)**
+- `NCLDocument` (Parser, runtime NCLua) e `CCWS` (HTTPServer, roteador).
+- Compila de forma transparente para JavaScript e WebAssembly.
 
-**Presentation Layer (Flutter)**
-- `NCLWidget` (NCLuaWidget, NCLMediaState) and `HTMLWidget` (webview, js-interop).
-- High-performance, pixel-perfect rendering across Web, desktop, and mobile.
+**Camada de Apresentação (Flutter)**
+- `NCLWidget` (NCLuaWidget, NCLMediaState) e `HTMLWidget` (webview, js-interop).
+- Renderização de alto desempenho e precisão de pixels na Web, desktop e dispositivos móveis.
 
 </div>
 
@@ -139,20 +194,20 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Architectural Communication Flow
+# Fluxo de Comunicação Arquitetural
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Unidirectional Coordination**
-- `NCLWidget` drives execution via explicit `tick()` calls.
-- No direct reference held between `NCLDocument` and UI rendering widgets.
+**Coordenação Unidirecional**
+- `NCLWidget` conduz a execução por meio de chamadas explícitas de `tick()`.
+- Nenhuma referência direta é mantida entre `NCLDocument` e os widgets de renderização da UI.
 
-**Deterministic Synchronization**
-- Engine edits internal `Media` states in document order.
-- UI queries and synchronizes visual properties on-demand (`syncProperties()`).
-- Completely eliminates race conditions and platform threading issues.
+**Sincronização Determinística**
+- O motor atualiza estados internos de `Media` na ordem do documento.
+- A UI consulta e sincroniza propriedades visuais sob demanda (`syncProperties()`).
+- Elimina completamente condições de corrida e conflitos de concorrência de threads nativas.
 
 </div>
 
@@ -166,20 +221,20 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# NCL Logic & Document Object Model
+# Lógica NCL e Modelo de Objetos do Documento (DOM)
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**In-Memory DOM Tree**
-- XML document parsed into `Element` and `Node` hierarchy.
-- Subclasses manage runtime states: `Media`, `Composition`, `Context`, `Switch`.
-- `NCLua` encapsulates the embedded Lua runtime.
+**Árvore DOM em Memória**
+- Documento XML analisado em uma hierarquia de `Element` e `Node`.
+- Subclasses gerenciam estados em tempo de execução: `Media`, `Composition`, `Context`, `Switch`.
+- `NCLua` encapsula o runtime Lua embutido.
 
-**Queue-Based Decoupling**
-- `ActionQueue`: Collects deterministic link executions and state changes.
-- `UIQueue`: Shares state changes across boundaries without coupling logic to rendering.
+**Desacoplamento Baseado em Filas**
+- `ActionQueue`: Coleta execuções determinísticas de links e mudanças de estado.
+- `UIQueue`: Compartilha mudanças de estado entre fronteiras sem acoplar a lógica à renderização.
 
 </div>
 
@@ -193,20 +248,20 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Portable NCLua: Canvas Translation Pipeline
+# NCLua Portável: Pipeline de Tradução para Canvas
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Pure Dart Lua Engine**
-- Embeds `lua_dardo` (pure Dart Lua 5.3 interpreter).
-- Runs in-browser without external C dependencies or WebAssembly bridges.
+**Motor Lua em Dart Puro**
+- Incorpora o `lua_dardo` (interpretador Lua 5.3 puro em Dart).
+- Executa no navegador sem dependências C externas ou pontes WebAssembly.
 
-**Command List Abstraction**
-- Lua drawing calls (`canvas:drawLine()`) are intercepted by NCLua.
-- Serialized command lists are dispatched to `NCLuaWidgetState`.
-- Flutter `CustomPainter` renders commands directly to the screen.
+**Abstração de Lista de Comandos**
+- Chamadas de desenho Lua (`canvas:drawLine()`) são interceptadas pelo NCLua.
+- Listas de comandos serializados são despachadas para o `NCLuaWidgetState`.
+- O `CustomPainter` do Flutter renderiza os comandos diretamente na tela.
 
 </div>
 
@@ -220,20 +275,20 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Portable NCLua in Practice
+# NCLua Portável na Prática
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Interactive Procedural Graphics**
-- Execution of Lua scripts manipulating shapes, text, and animations in real time.
+**Gráficos Procedurais Interativos**
+- Execução de scripts Lua manipulando formas, textos e animações em tempo real.
 
-**Cross-Platform Parity**
-- Same visual output across WebGL, Windows desktop, and mobile devices.
+**Paridade Multiplataforma**
+- Mesma saída visual no WebGL, desktop Windows e dispositivos móveis.
 
-**Asynchronous Coroutines**
-- Maps Lua coroutines to Dart `Future` and `async/await` paradigms without blocking the main tick.
+**Corrotinas Assíncronas**
+- Mapeia corrotinas Lua para os paradigmas de `Future` e `async/await` do Dart sem bloquear o loop principal (`tick`).
 
 </div>
 
@@ -247,21 +302,21 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Ginga-HTML5 & CCWS Architecture
+# Arquitetura Ginga-HTML5 e CCWS
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Native Clients (a)**
-- HTML app runs in native WebView.
-- Embedded local `HTTPServer` on port 44642 responds to standard HTTP requests.
+**Clientes Nativos (a)**
+- A aplicação HTML executa em WebView nativa.
+- `HTTPServer` local embutido na porta 44642 responde a requisições HTTP padrão.
 
-**Web Client via Fetch Overloading (b)**
-- HTML app runs in a sandboxed `iframe`.
-- Injected shim overloads window `fetch()` and `XMLHttpRequest`.
-- Intercepts requests and bridges them to Flutter via `postMessage`.
-- Resolves promises transparently without requiring an HTTP server or browser extension.
+**Cliente Web via Sobrecarga de Fetch (b)**
+- Aplicação HTML executa em `iframe` com sandbox.
+- Shim injetado sobrecarrega `window.fetch()` e `XMLHttpRequest`.
+- Intercepta requisições e faz a ponte para o Flutter via `postMessage`.
+- Resolve promises de forma transparente, sem servidor HTTP local ou extensões de navegador.
 
 </div>
 
@@ -275,20 +330,20 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Ginga-HTML5 in Practice
+# Ginga-HTML5 na Prática
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Full CCWS Virtualization**
-- Live discovery of broadcast services, program info, and channel metadata.
+**Virtualização Completa do CCWS**
+- Descoberta em tempo real de serviços de transmissão, informações de programação e metadados de canais.
 
-**Zero Configuration**
-- HTML5 applications run without local web servers or special browser permissions.
+**Configuração Zero**
+- Aplicações HTML5 executam sem servidores web locais ou permissões especiais de navegador.
 
-**Seamless Integration**
-- Broadcast-interactive web content embedded directly alongside declarative NCL compositions.
+**Integração Transparente**
+- Conteúdo web interativo de broadcast embutido diretamente ao lado de composições NCL declarativas.
 
 </div>
 
@@ -302,20 +357,20 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Validation: GingaPlayground
+# Validação: GingaPlayground
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Browser-Native Workbench**
-- Integrates `gingaf` Dart/Flutter web engine with Monaco code editor and live preview.
+**Bancada de Testes Nativa no Navegador**
+- Integra o motor web Dart/Flutter do `gingaf` com editor de código Monaco e pré-visualização ao vivo.
 
-**Demonstrated Capabilities**
-- Declarative NCL synchronization (`video.ncl`).
-- Procedural Lua graphics rendering (`lua_canvas.ncl`).
-- Ginga-HTML5 application with CCWS service discovery (`current_service.html`).
-- Instant interactive execution directly via public URL without installation.
+**Capacidades Demonstradas**
+- Sincronização NCL declarativa (`video.ncl`).
+- Renderização gráfica procedural em Lua (`lua_canvas.ncl`).
+- Aplicação Ginga-HTML5 com descoberta de serviços CCWS (`current_service.html`).
+- Execução interativa instantânea diretamente via URL pública, sem instalação.
 
 </div>
 
@@ -329,12 +384,72 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Final Remarks
+<!-- _class: invert -->
+<!-- _paginate: skip -->
 
-- First cross-platform architecture unifying Ginga-NCL, NCLua, and Ginga-HTML5 across Web and Desktop.
-- Portable Lua interpreter with Flutter canvas translation.
-- Client-side CCWS network interception through `fetch` overloading.
-- Open-source codebase, unit tests, and interactive web playground available openly.
+# Funcionalidades e Demo do gingaf
+
+---
+
+## NCL+links, NCL+grade_de_vídeos, NCL+embNCL e NCL+navegação
+
+<div class="grid-2x2">
+  <div class="grid-card">
+    <img src="assets/gifs/video.ncl.gif" alt="video.ncl" />
+    <p>NCL com links básicos (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=video.ncl">video.ncl</a>)</p>
+  </div>
+  <div class="grid-card">
+    <img src="assets/gifs/video_grid.ncl.gif" alt="video_grid.ncl" />
+    <p>NCL com grade de vídeos (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=video_grid.ncl">video_grid.ncl</a>)</p>
+  </div>
+  <div class="grid-card">
+    <img src="assets/gifs/emb_ncl.ncl.gif" alt="emb_ncl.ncl" />
+    <p>NCL embutido em NCL (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=emb_ncl.ncl">emb_ncl.ncl</a>)</p>
+  </div>
+  <div class="grid-card">
+    <img src="assets/gifs/focus_nav.ncl.gif" alt="focus_nav.ncl" />
+    <p>NCL com navegação de foco e seleção (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=focus_nav.ncl">focus_nav.ncl</a>)</p>
+  </div>
+</div>
+
+---
+
+## NCLua, HTML+CCWS, NCL+embHTML e NCL+multiusuário
+
+<div class="grid-2x2">
+  <div class="grid-card">
+    <img src="assets/gifs/lua_canvas.ncl.gif" alt="lua_canvas.ncl" />
+    <p>NCL com desenho em tela Lua e teclas (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=lua_canvas.ncl">lua_canvas.ncl</a>)</p>
+  </div>
+  <div class="grid-card">
+    <img src="assets/gifs/current_service.html.gif" alt="current_service.html" />
+    <p>HTML com CCWS /current-service/ (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=current_service.html">current_service.html</a>)</p>
+  </div>
+  <div class="grid-card">
+    <img src="assets/gifs/emb_html.ncl.gif" alt="emb_html.ncl" />
+    <p>NCL com documento HTML embutido (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=emb_html.ncl">emb_html.ncl</a>)</p>
+  </div>
+  <div class="grid-card">
+    <img src="assets/gifs/multiuser_profile.gif" alt="multiuser_profile/main.ncl" />
+    <p>NCL com troca de perfil multiusuário e publicidade direcionada (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=multiuser_profile/main.ncl">multiuser_profile/main.ncl</a>)</p>
+  </div>
+</div>
+
+---
+
+<!-- _class: invert -->
+<!-- _paginate: skip -->
+
+# Considerações Finais
+
+---
+
+# Considerações Finais
+
+- Primeira arquitetura multiplataforma que unifica Ginga-NCL, NCLua e Ginga-HTML5 na Web e no Desktop.
+- Interpretador Lua portátil com tradução de canvas para Flutter.
+- Interceptação de rede CCWS no lado do cliente por sobrecarga de `fetch`.
+- Código-fonte aberto, testes unitários e ambiente interativo web disponibilizados publicamente.
 
 ---
 
@@ -343,17 +458,17 @@ _paginate: false
 _header: ""
 -->
 
-# Thank You!
+# Obrigado!
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-### Questions & Discussion
+### Dúvidas e Discussão
 
-- **Repository**: https://github.com/ginga-org-br/gingaf
+- **Repositório**: https://github.com/ginga-org-br/gingaf
 - **Playground**: https://ginga-org-br.github.io/gingaf/playground/
-- **Contact**: `a.guedes@reading.ac.uk` | `danielmoraes@telemidia.puc-rio.br`
+- **Contato**: `a.guedes@reading.ac.uk` | `danielmoraes@telemidia.puc-rio.br`
 
 </div>
 
