@@ -14,7 +14,7 @@
 
 %% \BibTeX command to typeset the BibTeX logo in the docs
 \AtBeginDocument{%
-  \providecommand\BibTeX{{%
+  \providecommand\BibTeX{Agradecimentos{%
     \normalfont B\kern-0.499em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
 
 \settopmatter{printacmref=false, printfolios=false}
@@ -640,17 +640,16 @@ Furthermore, this web-native architecture opens new possibilities for collaborat
 
 The immediate next step in this research is to evolve the GingaPlayground by implementing a Language Server Protocol (LSP)\footnote{\url{https://microsoft.github.io/language-server-protocol/}} server. Integrating an LSP server is highly beneficial because it decouples the editor client (\textit{e.g.}, Monaco Editor or VS Code) from the core NCL validation and analysis engine. By encapsulating our Dart-based parser into a language server, we can deliver a consistent and feature-rich authoring experience, like real-time error reporting (diagnostics), context-aware autocompletion of NCL tags and attributes, and symbol outline navigation. Additionally, future work includes implementing support to allow Remote Players, for instance NCL360 formats~\cite{souza2020ncl360}.
 
-\vspace{-0.5em}
+\vspace{-0.3em}
 \section*{Ethical Considerations}
 \vspace{-0.3em}
-Google Gemini was used to assist in code development (identifying bugs and generating unit tests) and to provide suggestions during paper writing.
+Not applicable.
 
 \vspace{-0.5em}
 \section*{Acknowledgements}
 \vspace{-0.3em}
-We are grateful to all the academic members at SBTVD Forum working on the Ginga, who dedicate their time and effort in developing and maintaining the standard.
+We are grateful to all the academic members at SBTVD Forum working on the Ginga standard. We also acknowledge that Google Gemini was used to assist this work in: identifying bugs and generating unit tests; and grammar suggestions during writing.
 
-\vspace{-0.5em}
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{references}
 
