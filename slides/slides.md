@@ -43,18 +43,18 @@ style: |
 }
 .grid-card img {
   width: 100%;
-  max-height: 180px;
+  max-height: 165px;
   object-fit: contain;
   border-radius: 6px;
-  border: 1px solid #d0d7de;
+  border: 1px solid transparent;
   background-color: transparent;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
 }
 .grid-card p {
-  margin: 8px 0 0 0;
-  font-size: 20px;
+  margin: 6px 0 0 0;
+  font-size: 18px;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.3;
   color: #1f2328;
 }
 .grid-card a {
@@ -109,18 +109,9 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 # Spolier Alert!
 
-## Esse apresentação vai para o Guinnes book de 2027
+## Esse apresentação vai para o Guinnes book de 2027 💪
 
-![center w:500](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2S0TQNZ9hLSSAZlZ4PNTKgmKhCihdzZTAewErSnXD4w&s)
-
----
-
-# Agenda
-
-- **Contexto e Definição do Problema**
-- **Solução Proposta**
-- **Funcionalidades e Demo do gingaf**
-- **Considerações Finais**
+![center w:450](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2S0TQNZ9hLSSAZlZ4PNTKgmKhCihdzZTAewErSnXD4w&s)
 
 ---
 
@@ -160,22 +151,23 @@ Presente receptores de TV Digital certificados no Brasil e América Latina (>60M
 
 # Ecosistema de Desenvolvimento Ginga é limatado
 
-Não existe um ambiente desenvolve fácil acesso, completo e aberto. Por exemple o Mozilla https://developer.mozilla.org/
+**Ansência de ambiente portátil e "zero-install"**: de  fácil acesso, completo e aberto.
+- Podemos comparar o Mozilla https://developer.mozilla.org/ e a Ginga-VM (2010)
 
-![center w:500](assets/image.png)
+<div style="display: flex; justify-content: center; gap: 24px; align-items: center; margin-top: 12px;">
+  <img src="assets/image.png" style="width: 500px; object-fit: contain;" />
+  <img src="assets/image-1.png" style="width: 500px; object-fit: contain;" />
+</div>
 
 ---
 
 # Ecosistema de Desenvolvimento Ginga é limatado
 
-- **Sem Execução Imediata e Setup dicifil**: Ausência de ambiente portátil e "zero-install".
-- **Foco Acadêmico**: Foco em pesquisas.
+**Um fator é a escolha da Engine Grafica** (e.g., DirectFrameBuffer, FFmpeg, GStreamer, Browsers)
 
-**Desafios Técnicos de Cobertura da Normal**
-- Além de Ginga-NCL e NCLua novos componentes HTML5 and Ginga-CC-Websservices increementam complexidade.
+**Outro fator é a complexidade de certos componentes do Ginga**: NCLua (C-based lua engine), Ginga-HTML5 ( chromium, webkit) and Ginga-CC-Websservices (HTTP serve).
 
-![bg right:30% 90%](assets/image-1.png)
-![bg vertical right:30% 90%](assets/ginga.png)
+![center w:600](assets/ginga.png)
 
 ---
 
@@ -207,41 +199,50 @@ Não existe um ambiente desenvolve fácil acesso, completo e aberto. Por exemple
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 24px; align-items: start;">
 
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-<h3 style="margin: 0 0 6px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (Netscape)</h3>
-<div style="height: 190px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-  <img src="assets/ginga-netscape.png" style="max-height: 190px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
+<h3 style="margin: 0 0 2px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (Netscape)</h3>
+<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 0 0 8px 0; color: #0969da;">
+[Rodrigues et al. 1998]
+</p>
+<div style="height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+  <img src="assets/ginga-netscape.png" style="max-height: 180px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
 </div>
 <p style="font-size: 16px; line-height: 1.35; margin: 0; color: #24292f;">
 Plugin para navegador Netscape no início da WWW.
 </p>
-<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 6px 0 0 0; color: #57606a;">
-[Rodrigues et al. 1998]
+<p style="font-size: 14.5px; font-weight: 700; line-height: 1.35; margin: 8px 0 0 0; color: #cf222e;">
+browser-only<br>sem Lua
 </p>
 </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-<h3 style="margin: 0 0 6px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (Java AWT)</h3>
-<div style="height: 190px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-  <img src="assets/ginga-java.png" style="max-height: 190px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
+<h3 style="margin: 0 0 2px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (Java AWT)</h3>
+<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 0 0 8px 0; color: #0969da;">
+[Rodrigues et al. 2001]
+</p>
+<div style="height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+  <img src="assets/ginga-java.png" style="max-height: 180px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
 </div>
 <p style="font-size: 16px; line-height: 1.35; margin: 0; color: #24292f;">
 Ferramentas de exibição hipermídia sobre Java AWT.
 </p>
-<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 6px 0 0 0; color: #57606a;">
-[Rodrigues et al. 2001]
+<p style="font-size: 14.5px; font-weight: 700; line-height: 1.35; margin: 8px 0 0 0; color: #cf222e;">
+desktop-only<br>sem Lua
 </p>
 </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-<h3 style="margin: 0 0 6px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (C++ &amp; FFmpeg)</h3>
-<div style="height: 190px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-  <img src="assets/ginga-ffmpeg.png" style="max-height: 190px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
+<h3 style="margin: 0 0 2px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (C++ &amp; FFmpeg)</h3>
+<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 0 0 8px 0; color: #0969da;">
+[Soares et al. 2010]
+</p>
+<div style="height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+  <img src="assets/ginga-ffmpeg.png" style="max-height: 180px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
 </div>
 <p style="font-size: 16px; line-height: 1.35; margin: 0; color: #24292f;">
 Middleware declarativo com backend FFmpeg para IPTV/DTV.
 </p>
-<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 6px 0 0 0; color: #57606a;">
-[Soares et al. 2010]
+<p style="font-size: 14.5px; font-weight: 700; line-height: 1.25; margin: 8px 0 0 0; color: #cf222e;">
+desktop-only
 </p>
 </div>
 
@@ -249,7 +250,7 @@ Middleware declarativo com backend FFmpeg para IPTV/DTV.
 
 ---
 
-# Implementações do Ginga  na Literatura
+# Implementações do Ginga na Literatura
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 24px; align-items: center; position: relative; margin: 8px 0 16px 0;">
   <div style="position: absolute; left: 60px; right: 28px; height: 3px; background: #0969da; top: 50%; transform: translateY(-50%); z-index: 1;"></div>
@@ -277,83 +278,55 @@ Middleware declarativo com backend FFmpeg para IPTV/DTV.
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 24px; align-items: start;">
 
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-<h3 style="margin: 0 0 6px 0; color: #0969da; font-size: 21px; font-weight: 700;">UFSCar (WebNCL)</h3>
-<div style="height: 190px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-  <img src="assets/webncl.png" style="max-height: 190px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
+<h3 style="margin: 0 0 2px 0; color: #0969da; font-size: 21px; font-weight: 700;">UFSCar (WebNCL)</h3>
+<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 0 0 8px 0; color: #0969da;">
+[Melo et al. 2013]
+</p>
+<div style="height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+  <img src="assets/webncl.png" style="max-height: 180px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
 </div>
 <p style="font-size: 16px; line-height: 1.35; margin: 0; color: #24292f;">
-Apresentador web puramente em JavaScript (sem Lua).
+Apresentador web puramente em JavaScript.
 </p>
-<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 6px 0 0 0; color: #57606a;">
-[Melo et al. 2013]
+<p style="font-size: 14.5px; font-weight: 700; line-height: 1.35; margin: 8px 0 0 0; color: #cf222e;">
+browser-only<br>sem Lua
 </p>
 </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-<h3 style="margin: 0 0 6px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (C++ &amp; GStreamer)</h3>
-<div style="height: 190px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
-  <img src="assets/ginga-gst.png" style="max-height: 190px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
+<h3 style="margin: 0 0 2px 0; color: #0969da; font-size: 21px; font-weight: 700;">PUC-Rio (C++ &amp; GStreamer)</h3>
+<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 0 0 8px 0; color: #0969da;">
+[PUC-Rio / Telemídia]
+</p>
+<div style="height: 180px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+  <img src="assets/ginga-gst.png" style="max-height: 180px; max-width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
 </div>
 <p style="font-size: 16px; line-height: 1.35; margin: 0; color: #24292f;">
 Reimplementação C++ com <code>tick()</code> e GStreamer.
 </p>
-<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 6px 0 0 0; color: #57606a;">
-[PUC-Rio / Telemídia]
+<p style="font-size: 14.5px; font-weight: 700; line-height: 1.35; margin: 8px 0 0 0; color: #cf222e;">
+desktop-only<br>sem Ginga-CC-Webservices
 </p>
 </div>
 
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-<h3 style="margin: 0 0 6px 0; color: #0969da; font-size: 21px; font-weight: 700;">Sidia NuGinga (NodeJS)</h3>
-<div style="height: 190px; width: 100%; display: flex; gap: 8px; align-items: center; justify-content: center; margin-bottom: 8px;">
-  <img src="assets/nuginga1.png" style="max-height: 190px; max-width: 32%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
-  <img src="assets/nuginga2.png" style="max-height: 190px; max-width: 64%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
+<h3 style="margin: 0 0 2px 0; color: #0969da; font-size: 21px; font-weight: 700;">Sidia NuGinga (NodeJS)</h3>
+<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 0 0 8px 0; color: #0969da;">
+[Braga et al. 2018; Nogueira et al. 2020]
+</p>
+<div style="height: 180px; width: 100%; display: flex; gap: 8px; align-items: center; justify-content: center; margin-bottom: 8px;">
+  <img src="assets/nuginga1.png" style="max-height: 180px; max-width: 32%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
+  <img src="assets/nuginga2.png" style="max-height: 180px; max-width: 64%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); background: #fff;" />
 </div>
 <p style="font-size: 16px; line-height: 1.35; margin: 0; color: #24292f;">
 Middleware JS/Android e ferramenta web Playcode.
 </p>
-<p style="font-size: 13.5px; font-weight: 600; line-height: 1.2; margin: 6px 0 0 0; color: #57606a;">
-[Braga et al. 2018; Nogueira et al. 2020]
+<p style="font-size: 14.5px; font-weight: 700; line-height: 1.35; margin: 8px 0 0 0; color: #cf222e;">
+browser-only<br>sem Ginga-CC-Webservices
 </p>
 </div>
 
 </div>
-
----
-
-# Limitações das Implementações Ginga na Literatura
-
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 36px; align-items: start; font-size: 24px; line-height: 1.45; margin-top: 10px;">
-
-<div>
-
-**Acoplamento à Plataforma**
-- **Concorrência por Eventos**: Callbacks assíncronos e chamadas bloqueantes de SO.
-- **Dependência Nativa**: C++ acoplado a bibliotecas e codecs (FFmpeg, GTK).
-- **Sobrecarga de VMs**: Máquinas virtuais pesadas para contornar dependências.
-
-</div>
-
-<div>
-
-**Limitações Web e Código Fechado**
-- **Suporte Web Parcial**: WebNCL sem suporte a NCLua nem CCWS.
-- **Código Fechado**: NuGinga/Playcode fechados para a comunidade.
-- **Fragmentação**: Falta de paridade unificada entre Web e Desktop.
-
-</div>
-
-</div>
-
-<div class="callout-red" style="font-size: 26px; padding: 16px 22px; margin-top: 22px; border-left-width: 6px; line-height: 1.45;">
-<strong>Gargalos históricos</strong>: concorrência assíncrona complexa, dependência de codecs nativos, suporte web parcial e falta de código aberto.
-</div>
-
----
-
-<!-- _class: invert -->
-<!-- _paginate: skip -->
-
-# Solução Proposta
 
 ---
 
@@ -368,7 +341,10 @@ Middleware JS/Android e ferramenta web Playcode.
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; height: 180px; margin-top: 24px;">
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
     <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Native</div>
-    <img src="assets/setupbox.png" style="max-height: 110px; max-width: 90%; object-fit: contain;" />
+    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; height: 110px;">
+      <img src="assets/setupbox.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
+      <img src="assets/pc.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
+    </div>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
     <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Browser</div>
@@ -384,7 +360,7 @@ Middleware JS/Android e ferramenta web Playcode.
 
 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; height: 180px; margin-top: 10px;">
   <div style="display: flex; align-items: center; justify-content: center;">
-    <ul style="margin: 0; padding-left: 20px; font-size: 20px; line-height: 1.7; color: #24292f;">
+    <ul style="margin: 0; padding: 0; list-style: none; font-size: 20px; line-height: 1.8; color: #24292f; text-align: center;">
       <li><strong>PUC-Rio (Java AWT)</strong></li>
       <li><strong>PUC-Rio (C++ &amp; FFmpeg)</strong></li>
       <li><strong>PUC-Rio (C++ &amp; GStreamer)</strong></li>
@@ -392,7 +368,7 @@ Middleware JS/Android e ferramenta web Playcode.
   </div>
   <div></div>
   <div style="display: flex; align-items: center; justify-content: center;">
-    <ul style="margin: 0; padding-left: 20px; font-size: 20px; line-height: 1.7; color: #24292f;">
+    <ul style="margin: 0; padding: 0; list-style: none; font-size: 20px; line-height: 1.8; color: #24292f; text-align: center;">
       <li><strong>PUC-Rio (Netscape)</strong></li>
       <li><strong>UFSCar (WebNCL)</strong></li>
       <li><strong>Sidia NuGinga (NodeJS)</strong></li>
@@ -403,39 +379,93 @@ Middleware JS/Android e ferramenta web Playcode.
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; height: 180px; margin-top: 24px;">
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
     <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Native</div>
-    <img src="assets/setupbox.png" style="max-height: 110px; max-width: 90%; object-fit: contain;" />
+    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; height: 110px;">
+      <img src="assets/setupbox.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
+      <img src="assets/pc.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
+    </div>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
     <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Browser</div>
     <img src="assets/browsers.png" style="max-height: 80px; max-width: 90%; object-fit: contain; margin-top: 15px;" />
   </div>
+</div>
+
+---
+<!-- _class: invert -->
+<!-- _paginate: skip -->
+
+# Solução Proposta
+
+---
+
+# Solução Proposta: gingaf
+
+<div style="font-size: 22px; color: #57606a; margin-top: 14px; margin-bottom: 22px; font-weight: 600;">
+As principais decisões de design são:
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+
+<div style="background: #f8fafc; border: 1.5px solid #d0d7de; border-radius: 8px; padding: 20px 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+  <div style="font-size: 21px; font-weight: 800; color: #1f2328; margin-bottom: 8px;">
+    <strong>1. Engine Gráfica Multiplataforma</strong>
+  </div>
+  <div style="font-size: 17.5px; line-height: 1.45; color: #424a53;">
+    Código único em Dart/Flutter para execução consistente na Web, Desktop e Mobile.
+  </div>
+</div>
+
+<div style="background: #f8fafc; border: 1.5px solid #d0d7de; border-radius: 8px; padding: 20px 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+  <div style="font-size: 21px; font-weight: 800; color: #1f2328; margin-bottom: 8px;">
+    <strong>2. UI e Modelos Desacoplados</strong>
+  </div>
+  <div style="font-size: 17.5px; line-height: 1.45; color: #424a53;">
+    Lógica (<code>NCLDocument</code>) independente e isolada de widgets ou contextos de desenho.
+  </div>
+</div>
+
+<div style="background: #f8fafc; border: 1.5px solid #d0d7de; border-radius: 8px; padding: 20px 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+  <div style="font-size: 21px; font-weight: 800; color: #1f2328; margin-bottom: 8px;">
+    <strong>3. Relógio Virtual</strong>
+  </div>
+  <div style="font-size: 17.5px; line-height: 1.45; color: #424a53;">
+    Avanço temporal determinístico orquestrado via <code>tick()</code>, eliminando condições de corrida.
+  </div>
+</div>
+
+<div style="background: #f8fafc; border: 1.5px solid #d0d7de; border-radius: 8px; padding: 20px 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+  <div style="font-size: 21px; font-weight: 800; color: #1f2328; margin-bottom: 8px;">
+    <strong>4. NCLua e CCWS Portáveis</strong>
+  </div>
+  <div style="font-size: 17.5px; line-height: 1.45; color: #424a53;">
+    Runtime Lua puro em Dart e virtualização de rede sem dependências nativas.
+  </div>
+</div>
+
 </div>
 
 ---
 
 <!-- _paginate: hold -->
 
-# Implementações do Ginga na Literatura
+# 1. Engine Gráfica Multiplataforma
 
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; height: 180px; margin-top: 10px;">
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; height: 130px; margin-top: 10px;">
   <div style="display: flex; align-items: center; justify-content: center;">
-    <ul style="margin: 0; padding-left: 20px; font-size: 20px; line-height: 1.7; color: #24292f;">
+    <ul style="margin: 0; padding: 0; list-style: none; font-size: 20px; line-height: 1.8; color: #24292f; text-align: center;">
       <li><strong>PUC-Rio (Java AWT)</strong></li>
       <li><strong>PUC-Rio (C++ &amp; FFmpeg)</strong></li>
       <li><strong>PUC-Rio (C++ &amp; GStreamer)</strong></li>
     </ul>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-    <div style="font-size: 28px; font-weight: 800; color: #0969da; margin-bottom: 8px;">gingaf (ours)</div>
-    <div style="font-size: 19px; font-weight: 600; color: #1f2328; line-height: 1.35; margin-bottom: 8px;">
-      Arquitetura Cross-Platform
-    </div>
-    <div style="font-size: 16px; font-weight: 700; color: #0969da;">
+    <div style="font-size: 30px; font-weight: 800; color: #0969da; margin-bottom: 6px;">gingaf (ours)</div>
+    <div style="font-size: 18px; font-weight: 700; color: #0969da;">
       Ginga-NCL + Ginga-HTML5
     </div>
   </div>
   <div style="display: flex; align-items: center; justify-content: center;">
-    <ul style="margin: 0; padding-left: 20px; font-size: 20px; line-height: 1.7; color: #24292f;">
+    <ul style="margin: 0; padding: 0; list-style: none; font-size: 20px; line-height: 1.8; color: #24292f; text-align: center;">
       <li><strong>PUC-Rio (Netscape)</strong></li>
       <li><strong>UFSCar (WebNCL)</strong></li>
       <li><strong>Sidia NuGinga (NodeJS)</strong></li>
@@ -443,10 +473,25 @@ Middleware JS/Android e ferramenta web Playcode.
   </div>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; height: 180px; margin-top: 24px;">
+<div style="background: #e2e7ee; border: 2px solid #b8c4d1; border-radius: 8px; padding: 10px 0; margin: 16px 0 20px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; gap: 24px;">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <img src="assets/dart.svg" style="height: 32px; width: 32px; object-fit: contain;" />
+    <span style="font-size: 24px; font-weight: 800; color: #1f2328; letter-spacing: 0.5px;">Dart</span>
+  </div>
+  <span style="font-size: 24px; font-weight: 300; color: #8c959f;">/</span>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <img src="assets/flutter.svg" style="height: 32px; width: 32px; object-fit: contain;" />
+    <span style="font-size: 24px; font-weight: 800; color: #1f2328; letter-spacing: 0.5px;">Flutter</span>
+  </div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; height: 160px; margin-top: 12px;">
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
     <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Native</div>
-    <img src="assets/setupbox.png" style="max-height: 110px; max-width: 90%; object-fit: contain;" />
+    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; height: 110px;">
+      <img src="assets/setupbox.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
+      <img src="assets/pc.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
+    </div>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
     <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Browser</div>
@@ -456,21 +501,28 @@ Middleware JS/Android e ferramenta web Playcode.
 
 ---
 
-# Solução Proposta: gingaf
+# 1. Engine Gráfica Multiplataforma
 
-### A primeira reformulação arquitetural em mais de 15 anos
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: end; margin-top: 36px;">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <img src="assets/app_clock4.png" style="max-height: 320px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+    <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-top: 14px;">Desktop</div>
+  </div>
 
-<div style="margin-top: 24px; font-size: 26px; line-height: 1.6;">
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <img src="assets/web.png" style="max-height: 320px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+    <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-top: 14px;">Web</div>
+  </div>
 
-- **Suporte Multiplataforma**: Execução consistente na Web (Wasm/CanvasKit), Desktop e Mobile a partir de um código-fonte único em Dart/Flutter.
-- **UI e Modelos Desacoplados**: A máquina de estados lógica (`NCLDocument`) opera de forma independente, sem acoplamento a widgets ou contextos de desenho.
-- **Relógio Virtual Determinístico**: O avanço temporal é orquestrado por chamadas explícitas de `tick()`, permitindo testes em milissegundos e eliminando condições de corrida.
-
+  <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <img src="assets/android.png" style="max-height: 320px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+    <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-top: 14px;">Mobile</div>
+  </div>
 </div>
 
 ---
 
-# Arquitetura em Camadas: Desacoplamento de Subsistemas
+# 2. UI e Modelos Desacoplados
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
@@ -499,26 +551,43 @@ Middleware JS/Android e ferramenta web Playcode.
 
 ---
 
-# Fluxo de Comunicação Arquitetural
+# 3. Implementação Anterior: Sem Relógio Virtual
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Coordenação Unidirecional**
-- `NCLWidget` conduz a execução por meio de chamadas explícitas de `tick()`.
-- Nenhuma referência direta é mantida entre `NCLDocument` e os widgets de renderização da UI.
-
-**Sincronização Determinística**
-- O motor atualiza estados internos de `Media` na ordem do documento.
-- A UI consulta e sincroniza propriedades visuais sob demanda (`syncProperties()`).
-- Elimina completamente condições de corrida e conflitos de concorrência de threads nativas.
+- **Ausência de Relógio Virtual**: O avanço temporal dependia do relógio do SO e de threads nativas.
+- **Chamadas Bloqueantes de Renderização**: A máquina de estados bloqueava a execução em chamadas `draw()`.
+- **Acoplamento por Callbacks**: Transições do NCL disparadas via callbacks assíncronos (`onEvent()`) de threads do sistema.
+- **Condições de Corrida**: Concorrência não-determinística, inviabilizando execução no sandbox da Web.
 
 </div>
 
-<div >
+<div style="display: flex; justify-content: center; align-items: flex-start;">
 
-<img src="assets/old_arch.png"/>
+<img src="assets/old_arch.png" />
+
+</div>
+
+</div>
+
+---
+
+# 3. Relógio Virtual
+
+<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
+
+<div>
+
+- **Coordenação por `tick()`**: O `NCLWidget` avança o relógio virtual por meio de pulsos explícitos.
+- **Desacoplamento de UI**: Nenhuma referência direta entre `NCLDocument` e widgets de renderização.
+- **Sincronização Determinística**: Estados de `Media` atualizados na ordem do documento.
+- **Consulta sob Demanda**: UI obtém propriedades via `syncProperties()`, eliminando condições de corrida.
+
+</div>
+
+<div style="display: flex; justify-content: center; align-items: flex-start;">
 
 <img src="assets/arch.png" />
 
@@ -528,26 +597,24 @@ Middleware JS/Android e ferramenta web Playcode.
 
 ---
 
-# Lógica NCL e Modelo de Objetos do Documento (DOM)
+# 4. NCLua Portável
 
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
+<div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: start; margin-top: 4px;">
 
 <div>
 
-**Árvore DOM em Memória**
-- Documento XML analisado em uma hierarquia de `Element` e `Node`.
-- Subclasses gerenciam estados em tempo de execução: `Media`, `Composition`, `Context`, `Switch`.
-- `NCLua` encapsula o runtime Lua embutido.
-
-**Desacoplamento Baseado em Filas**
-- `ActionQueue`: Coleta execuções determinísticas de links e mudanças de estado.
-- `UIQueue`: Compartilha mudanças de estado entre fronteiras sem acoplar a lógica à renderização.
+- **Motor Lua em Dart Puro**: `lua_dardo` (Lua 5.3) na Web sem dependências C ou Wasm.
+- **Abstração de Comandos**: Chamadas `canvas` despachadas para o `CustomPainter` do Flutter.
+- **Corrotinas Assíncronas**: Mapeadas para `async/await` sem bloquear o `tick()`.
+- **Paridade Multiplataforma**: Saída visual idêntica na Web (WebGL), Desktop e Mobile.
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: flex-start;">
+<div style="display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: flex-start;">
 
-<img src="assets/elem_tree.png" />
+<img src="assets/lua_pipeline.png" style="max-height: 180px; width: 100%; object-fit: contain;" />
+
+<img src="assets/playground-lua.png" style="max-height: 185px; width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08);" />
 
 </div>
 
@@ -555,135 +622,25 @@ Middleware JS/Android e ferramenta web Playcode.
 
 ---
 
-# NCLua Portável: Pipeline de Tradução para Canvas
+# 4. Ginga-CC-WebServices Portável
 
 <div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
 
 <div>
 
-**Motor Lua em Dart Puro**
-- Incorpora o `lua_dardo` (interpretador Lua 5.3 puro em Dart).
-- Executa no navegador sem dependências C externas ou pontes WebAssembly.
-
-**Abstração de Lista de Comandos**
-- Chamadas de desenho Lua (`canvas:drawLine()`) são interceptadas pelo NCLua.
-- Listas de comandos serializados são despachadas para o `NCLuaWidgetState`.
-- O `CustomPainter` do Flutter renderiza os comandos diretamente na tela.
-
-</div>
-
-<div style="display: flex; justify-content: center; align-items: flex-start;">
-
-<img src="assets/lua_pipeline.png" />
-
-</div>
-
-</div>
-
----
-
-# NCLua Portável na Prática
-
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
-
-<div>
-
-**Gráficos Procedurais Interativos**
-- Execução de scripts Lua manipulando formas, textos e animações em tempo real.
-
-**Paridade Multiplataforma**
-- Mesma saída visual no WebGL, desktop Windows e dispositivos móveis.
-
-**Corrotinas Assíncronas**
-- Mapeia corrotinas Lua para os paradigmas de `Future` e `async/await` do Dart sem bloquear o loop principal (`tick`).
-
-</div>
-
-<div style="display: flex; justify-content: center; align-items: flex-start;">
-
-<img src="assets/playground-lua.png" />
-
-</div>
-
-</div>
-
----
-
-# Arquitetura Ginga-HTML5 e CCWS
-
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
-
-<div>
-
-**Clientes Nativos (a)**
+**GingaHTML5 e Ginga-CC-Websvices em Nativo**
 - A aplicação HTML executa em WebView nativa.
 - `HTTPServer` local embutido na porta 44642 responde a requisições HTTP padrão.
 
-**Cliente Web via Interceptação de Fetch (b)**
+**GingaHTML5 e Ginga-CC-Websvices em Browser**
 - Aplicação HTML executa em `iframe` com sandbox.
 - Shim injetado intercepta e sobrescreve `window.fetch()` e `XMLHttpRequest`.
-- Faz a ponte para o Flutter via `postMessage`.
-- Virtualização de rede client-side do CCWS: sem servidor HTTP local ou dependências nativas.
 
 </div>
 
 <div style="display: flex; justify-content: center; align-items: flex-start;">
 
 <img src="assets/ccws_intercept.png" />
-
-</div>
-
-</div>
-
----
-
-# Ginga-HTML5 na Prática
-
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
-
-<div>
-
-**Virtualização Completa do CCWS**
-- Descoberta em tempo real de serviços de transmissão, informações de programação e metadados de canais.
-
-**Configuração Zero**
-- Aplicações HTML5 executam sem servidores web locais ou permissões especiais de navegador.
-
-**Integração Transparente**
-- Conteúdo web interativo de broadcast embutido diretamente ao lado de composições NCL declarativas.
-
-</div>
-
-<div style="display: flex; justify-content: center; align-items: flex-start;">
-
-<img src="assets/playground-html.png" />
-
-</div>
-
-</div>
-
----
-
-# Validação: GingaPlayground
-
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
-
-<div>
-
-**Bancada de Testes Nativa no Navegador**
-- Integra o motor web Dart/Flutter do `gingaf` com editor de código Monaco e pré-visualização ao vivo.
-
-**Capacidades Demonstradas**
-- Sincronização NCL declarativa (`video.ncl`).
-- Renderização gráfica procedural em Lua (`lua_canvas.ncl`).
-- Aplicação Ginga-HTML5 com descoberta de serviços CCWS (`current_service.html`).
-- Execução interativa instantânea diretamente via URL pública, sem instalação.
-
-</div>
-
-<div style="display: flex; justify-content: center; align-items: flex-start;">
-
-<img src="assets/playground.png" />
 
 </div>
 
@@ -744,15 +701,19 @@ Middleware JS/Android e ferramenta web Playcode.
 
 ---
 
-# Esse apresentação vai para o Guinnes book de 2027
+# Esse apresentação vai para o Guinnes book de 2027?
+
+![center w:450](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2S0TQNZ9hLSSAZlZ4PNTKgmKhCihdzZTAewErSnXD4w&s)
 
 ---
 
-# Esse apresentação vai para o Guinnes book de 2027
+# Esse apresentação vai para o Guinnes book de 2027?
 
-### NCL foward
+## Primeiro exemplo de NCL foward na historia!
 
-<img src="assets/gifs/00syncProp.ncl.gif"/>
+<div style="display: flex; justify-content: center; margin-top: 16px;">
+  <img src="assets/gifs/00syncProp.ncl.gif" />
+</div>
 
 ---
 
@@ -765,11 +726,11 @@ Middleware JS/Android e ferramenta web Playcode.
 
 # Considerações Finais
 
-- **Primeira reformulação arquitetural da PUC-Rio em mais de 15 anos**
-- **Multiplataforma Unificado**: Execução nativa de Ginga-NCL, NCLua e Ginga-HTML5/CCWS no navegador (Wasm), Desktop e Dispositivos Móveis.
-- **Gráficos a 60 FPS**: Pipeline intermediário de lista de comandos Lua com renderização fluida no Flutter.
-- **Virtualização Client-Side de CCWS**: Interceptação transparente de requisições de rede sem necessidade de servidores locais.
-- **GingaPlayground**  disponivel em http://ginga.org.br/gingaf/playground.
+**Primeira reformulação arquitetural da PUC-Rio em mais de 15 anos**
+
+**Multiplataforma com código unificado**, **Gráficos a 60 FPS**, Supporte à NCLua, HTML5, e CCWS.
+
+**GingaPlayground**  disponivel em http://ginga.org.br/gingaf/playground.
 
 ---
 
