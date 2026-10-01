@@ -107,6 +107,14 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
+# Spolier Alert!
+
+## Esse apresentação vai para o Guinnes book de 2027
+
+![center w:500](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2S0TQNZ9hLSSAZlZ4PNTKgmKhCihdzZTAewErSnXD4w&s)
+
+---
+
 # Agenda
 
 - **Contexto e Definição do Problema**
@@ -733,6 +741,18 @@ Middleware JS/Android e ferramenta web Playcode.
     <p>NCL com troca de perfil multiusuário e publicidade direcionada (<a href="https://ginga-org-br.github.io/gingaf/playground/?app=multiuser_profile/main.ncl">multiuser_profile/main.ncl</a>)</p>
   </div>
 </div>
+
+---
+
+# Esse apresentação vai para o Guinnes book de 2027
+
+---
+
+# Esse apresentação vai para o Guinnes book de 2027
+
+### NCL foward
+
+<img src="assets/gifs/00syncProp.ncl.gif"/>
 
 ---
 
