@@ -524,23 +524,23 @@ As principais decisões de design são:
 
 # 2. UI e Modelos Desacoplados
 
-<div style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 32px; align-items: center;">
+<div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center;">
 
 <div>
 
 **Camada de Lógica (Dart Puro)**
-- `NCLDocument` (Parser, runtime NCLua) e `CCWS` (HTTPServer, roteador).
-- Compila de forma transparente para JavaScript e WebAssembly.
+- `NCLDocument` (Parser, runtime NCLua) e `CCWS`.
+- Compila para JavaScript e WebAssembly.
 
 **Camada de Apresentação (Flutter)**
-- `NCLWidget` (NCLuaWidget, NCLMediaState) e `HTMLWidget` (webview, js-interop).
-- Renderização de alto desempenho e precisão de pixels na Web, desktop e dispositivos móveis.
+- `NCLWidget` e `HTMLWidget` (webview, js-interop).
+- Renderização com precisão de pixels na Web, desktop e mobile.
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
 
-<img src="assets/layered_arch.png" style="max-width: 100%; max-height: 430px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
+<img src="assets/layered_arch.png" style="max-width: 100%; max-height: 410px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
 </div>
 
@@ -562,7 +562,7 @@ As principais decisões de design são:
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
 
 <img src="assets/old_arch.png" style="max-width: 100%; max-height: 380px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
@@ -578,14 +578,14 @@ As principais decisões de design são:
 
 <div>
 
-- **Coordenação por `tick()`**: O `NCLWidget` avança o relógio virtual por meio de pulsos explícitos.
-- **Desacoplamento de UI**: Nenhuma referência direta entre `NCLDocument` e widgets de renderização.
+- **Coordenação por `tick()`**: O `NCLWidget` avança o relógio virtual por pulsos explícitos.
+- **Desacoplamento de UI**: Sem referência direta entre `NCLDocument` e widgets da UI.
 - **Sincronização Determinística**: Estados de `Media` atualizados na ordem do documento.
-- **Consulta sob Demanda**: UI obtém propriedades via `syncProperties()`, eliminando condições de corrida.
+- **Consulta sob Demanda**: UI obtém propriedades via `syncProperties()`, sem condições de corrida.
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
 
 <img src="assets/arch.png" style="max-width: 100%; max-height: 380px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
@@ -608,7 +608,7 @@ As principais decisões de design são:
 
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; width: 100%; text-align: center;">
+<div style="display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; width: 100%;">
 
 <img src="assets/lua_pipeline.png" style="max-width: 100%; max-height: 185px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
@@ -622,23 +622,23 @@ As principais decisões de design são:
 
 # 4. Ginga-CC-WebServices Portável
 
-<div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center;">
+<div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: center;">
 
 <div>
 
-**GingaHTML5 e Ginga-CC-Websvices em Nativo**
-- A aplicação HTML executa em WebView nativa.
-- `HTTPServer` local embutido na porta 44642 responde a requisições HTTP padrão.
+**Nativo (a)**
+- Aplicação HTML executa em WebView nativa.
+- `HTTPServer` local embutido (porta 44642) atende requisições HTTP.
 
-**GingaHTML5 e Ginga-CC-Websvices em Browser**
+**Navegador com Sandbox (b)**
 - Aplicação HTML executa em `iframe` com sandbox.
-- Shim injetado intercepta e sobrescreve `window.fetch()` e `XMLHttpRequest`.
+- Shim injetado intercepta `window.fetch()` e `XMLHttpRequest`.
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
+<div style="display: flex; justify-content: center; align-items: center; width: 100%;">
 
-<img src="assets/ccws_intercept.png" style="max-width: 100%; max-height: 420px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
+<img src="assets/ccws_intercept.png" style="max-width: 100%; max-height: 400px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
 </div>
 
