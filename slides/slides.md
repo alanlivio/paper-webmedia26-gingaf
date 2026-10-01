@@ -420,7 +420,7 @@ As principais decisões de design são:
     <strong>2. UI e Modelos Desacoplados</strong>
   </div>
   <div style="font-size: 17.5px; line-height: 1.45; color: #424a53;">
-    Lógica (<code>NCLDocument</code>) independente e isolada de widgets ou contextos de desenho.
+    Lógica (<code>NCLDocument</code>) independente e isolada de rendering.
   </div>
 </div>
 
@@ -524,12 +524,9 @@ As principais decisões de design são:
 
 # 2. UI e Modelos Desacoplados
 
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
+<div style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 32px; align-items: center;">
 
 <div>
-
-**Separação Estrita de Subsistemas**
-- Componentes de lógica são rigorosamente separados dos componentes de interface (UI).
 
 **Camada de Lógica (Dart Puro)**
 - `NCLDocument` (Parser, runtime NCLua) e `CCWS` (HTTPServer, roteador).
@@ -541,32 +538,9 @@ As principais decisões de design são:
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: flex-start;">
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
 
-<img src="assets/layered_arch.png" />
-
-</div>
-
-</div>
-
----
-
-# 3. Implementação Anterior: Sem Relógio Virtual
-
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
-
-<div>
-
-- **Ausência de Relógio Virtual**: O avanço temporal dependia do relógio do SO e de threads nativas.
-- **Chamadas Bloqueantes de Renderização**: A máquina de estados bloqueava a execução em chamadas `draw()`.
-- **Acoplamento por Callbacks**: Transições do NCL disparadas via callbacks assíncronos (`onEvent()`) de threads do sistema.
-- **Condições de Corrida**: Concorrência não-determinística, inviabilizando execução no sandbox da Web.
-
-</div>
-
-<div style="display: flex; justify-content: center; align-items: flex-start;">
-
-<img src="assets/old_arch.png" />
+<img src="assets/layered_arch.png" style="max-width: 100%; max-height: 430px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
 </div>
 
@@ -576,7 +550,31 @@ As principais decisões de design são:
 
 # 3. Relógio Virtual
 
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
+## Implementações Anteriores Sem Relógio Virtual
+
+<div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 32px; align-items: center;">
+
+<div>
+
+- Tempo atrelado ao relógio e threads do SO.
+- Máquina de estados bloqueada por chamadas `draw()`.
+- Transições disparadas via `onEvent()` nativo.
+
+</div>
+
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
+
+<img src="assets/old_arch.png" style="max-width: 100%; max-height: 380px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
+
+</div>
+
+</div>
+
+---
+
+# 3. Relógio Virtual
+
+<div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: center;">
 
 <div>
 
@@ -587,9 +585,9 @@ As principais decisões de design são:
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: flex-start;">
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
 
-<img src="assets/arch.png" />
+<img src="assets/arch.png" style="max-width: 100%; max-height: 380px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
 </div>
 
@@ -599,7 +597,7 @@ As principais decisões de design são:
 
 # 4. NCLua Portável
 
-<div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: start; margin-top: 4px;">
+<div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center;">
 
 <div>
 
@@ -610,11 +608,11 @@ As principais decisões de design são:
 
 </div>
 
-<div style="display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: flex-start;">
+<div style="display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; width: 100%; text-align: center;">
 
-<img src="assets/lua_pipeline.png" style="max-height: 180px; width: 100%; object-fit: contain;" />
+<img src="assets/lua_pipeline.png" style="max-width: 100%; max-height: 185px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
-<img src="assets/playground-lua.png" style="max-height: 185px; width: 100%; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08);" />
+<img src="assets/playground-lua.png" style="max-width: 100%; max-height: 195px; width: auto; height: auto; object-fit: contain; border-radius: 6px; border: 1px solid #d0d7de; box-shadow: 0 3px 10px rgba(0,0,0,0.08); margin: 0 auto; display: block;" />
 
 </div>
 
@@ -624,7 +622,7 @@ As principais decisões de design são:
 
 # 4. Ginga-CC-WebServices Portável
 
-<div style="display: grid; grid-template-columns: 3fr 2fr; align-items: start;">
+<div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center;">
 
 <div>
 
@@ -638,9 +636,9 @@ As principais decisões de design são:
 
 </div>
 
-<div style="display: flex; justify-content: center; align-items: flex-start;">
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; text-align: center;">
 
-<img src="assets/ccws_intercept.png" />
+<img src="assets/ccws_intercept.png" style="max-width: 100%; max-height: 420px; width: auto; height: auto; object-fit: contain; margin: 0 auto; display: block;" />
 
 </div>
 
