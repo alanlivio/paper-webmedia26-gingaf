@@ -107,9 +107,9 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
 
 ---
 
-# Spolier Alert!
+# Spoiler Alert!
 
-## Esse apresentação vai para o Guinnes book de 2027 💪
+## Esta apresentação vai para o Guinness Book de 2027 💪
 
 ![center w:450](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2S0TQNZ9hLSSAZlZ4PNTKgmKhCihdzZTAewErSnXD4w&s)
 
@@ -143,15 +143,15 @@ https://alanlivio.github.io/paper-webmedia26-gingaf/
   </div>
 </div>
 
-Definido na serie de normas SBTVD ABNT 15606.
+Definido na série de normas SBTVD ABNT 15606.
 
-Presente receptores de TV Digital certificados no Brasil e América Latina (>60M telespectadores)
+Presente em receptores de TV Digital certificados no Brasil e América Latina (>60M telespectadores)
 
 ---
 
-# Ecosistema de Desenvolvimento Ginga é limatado
+# Ecossistema de Desenvolvimento Ginga é limitado
 
-**Ansência de ambiente portátil e "zero-install"**: de  fácil acesso, completo e aberto.
+**Ausência de ambiente portátil e "zero-install"**: de fácil acesso, completo e aberto.
 - Podemos comparar o Mozilla https://developer.mozilla.org/ e a Ginga-VM (2010)
 
 <div style="display: flex; justify-content: center; gap: 24px; align-items: center; margin-top: 12px;">
@@ -161,11 +161,11 @@ Presente receptores de TV Digital certificados no Brasil e América Latina (>60M
 
 ---
 
-# Ecosistema de Desenvolvimento Ginga é limatado
+# Ecossistema de Desenvolvimento Ginga é limitado
 
-**Um fator é a escolha da Engine Grafica** (e.g., DirectFrameBuffer, FFmpeg, GStreamer, Browsers)
+**Um fator é a escolha da Engine Gráfica** (e.g., DirectFrameBuffer, FFmpeg, GStreamer, Browsers)
 
-**Outro fator é a complexidade de certos componentes do Ginga**: NCLua (C-based lua engine), Ginga-HTML5 ( chromium, webkit) and Ginga-CC-Websservices (HTTP serve).
+**Outro fator é a complexidade de certos componentes do Ginga**: NCLua (C-based lua engine), Ginga-HTML5 (chromium, webkit) e Ginga-CC-Webservices (HTTP server).
 
 ![center w:600](assets/ginga.png)
 
@@ -329,32 +329,6 @@ browser-only<br>sem Ginga-CC-Webservices
 </div>
 
 ---
-
-# Solução proposta
-
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; height: 180px; margin-top: 10px; visibility: hidden;">
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
-
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; height: 180px; margin-top: 24px;">
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-    <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Native</div>
-    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; height: 110px;">
-      <img src="assets/setupbox.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
-      <img src="assets/pc.png" style="max-height: 105px; max-width: 48%; object-fit: contain;" />
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-    <div style="font-size: 24px; font-weight: 700; color: #1f2328; margin-bottom: 8px;">Browser</div>
-    <img src="assets/browsers.png" style="max-height: 80px; max-width: 90%; object-fit: contain; margin-top: 15px;" />
-  </div>
-</div>
-
----
-
-<!-- _paginate: hold -->
 
 # Implementações do Ginga na Literatura
 
@@ -699,15 +673,15 @@ As principais decisões de design são:
 
 ---
 
-# Esse apresentação vai para o Guinnes book de 2027?
+# Esta apresentação vai para o Guinness Book de 2027?
 
 ![center w:450](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2S0TQNZ9hLSSAZlZ4PNTKgmKhCihdzZTAewErSnXD4w&s)
 
 ---
 
-# Esse apresentação vai para o Guinnes book de 2027?
+# Esta apresentação vai para o Guinness Book de 2027?
 
-## Primeiro exemplo de NCL foward na historia!
+## Primeiro exemplo de NCL forward na história!
 
 <div style="display: flex; justify-content: center; margin-top: 16px;">
   <img src="assets/gifs/00syncProp.ncl.gif" />
@@ -726,9 +700,9 @@ As principais decisões de design são:
 
 **Primeira reformulação arquitetural da PUC-Rio em mais de 15 anos**
 
-**Multiplataforma com código unificado**, **Gráficos a 60 FPS**, Supporte à NCLua, HTML5, e CCWS.
+**Multiplataforma com código unificado**, **Gráficos a 60 FPS**, Suporte a NCLua, HTML5 e CCWS.
 
-**GingaPlayground**  disponivel em http://ginga.org.br/gingaf/playground.
+**GingaPlayground** disponível em http://ginga.org.br/gingaf/playground.
 
 ---
 
