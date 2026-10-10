@@ -73,6 +73,75 @@ style: |
   font-size: 25px;
   line-height: 1.45;
 }
+section.contrib-slide {
+  padding: 34px 60px 24px 60px;
+}
+section.contrib-slide h1 {
+  margin-bottom: 2px;
+}
+section.contrib-slide h2 {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.contrib-subheading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2328;
+  margin: 16px 0 10px 0;
+}
+.contrib-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.contrib-card {
+  border: 1.5px solid #d0d7de;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 126px;
+  box-sizing: border-box;
+  margin: 0 !important;
+}
+.contrib-card strong {
+  display: block;
+  font-size: 25px;
+  font-weight: 700;
+  color: #1f2328;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.contrib-card p {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.35;
+  color: #57606a;
+}
+.contrib-card.highlight {
+  background: #ddf4ff;
+  margin: 0 !important;
+}
+.contrib-card.highlight strong {
+  color: #0969da;
+}
+.contrib-card.highlight p {
+  color: #1f2328;
+}
+.contrib-card.dimmed {
+  background: #f6f8fa;
+  opacity: 0.6;
+  margin: 0 !important;
+}
+.contrib-card.dimmed strong {
+  color: #57606a;
+}
+.contrib-card.dimmed p {
+  color: #57606a;
+}
 </style>
 
 <!-- _paginate: false -->
@@ -689,20 +758,168 @@ As principais decisões de design são:
 
 ---
 
-<!-- _class: invert -->
-<!-- _paginate: skip -->
+<!-- _class: contrib-slide -->
 
-# Considerações Finais
+# Contribuições
+
+<div style="height: 240px; border: 2.5px dashed #d0d7de; border-radius: 8px; background: #f6f8fa; box-sizing: border-box; margin: 18px 0 10px 0;"></div>
+
+<div class="contrib-subheading">Decisões de Arquitetura</div>
+
+<div class="contrib-grid">
+  <div class="contrib-card">
+    <strong>1. Engine Gráfica</strong>
+    <p>Dart/Flutter unificado</p>
+  </div>
+  <div class="contrib-card">
+    <strong>2. UI Desacoplada</strong>
+    <p>Lógica headless em memória</p>
+  </div>
+  <div class="contrib-card">
+    <strong>3. Relógio Virtual</strong>
+    <p>Avanço via tick()</p>
+  </div>
+  <div class="contrib-card">
+    <strong>4. NCLua &amp; CCWS</strong>
+    <p>Lua e CCWS virtualizados</p>
+  </div>
+</div>
 
 ---
 
-# Considerações Finais
+<!-- _class: contrib-slide -->
 
-**Primeira reformulação arquitetural da PUC-Rio em mais de 15 anos**
+# Contribuições
 
-**Multiplataforma com código unificado**, **Gráficos a 60 FPS**, Suporte a NCLua, HTML5 e CCWS.
+## Portabilidade Multiplataforma
 
-**GingaPlayground** disponível em http://ginga.org.br/gingaf/playground.
+<div style="display: grid; grid-template-columns: 1fr 1.35fr; gap: 24px; align-items: center; height: 215px;">
+  <div>
+    <ul style="font-size: 23px; line-height: 1.55; color: #24292f; margin: 0; padding-left: 24px;">
+      <li>Suporte a <strong>Desktop</strong>, <strong>Web</strong> e <strong>Android</strong></li>
+      <li>Pronto para <strong>dispositivos futuros</strong> (ex.: TVs com suporte a Flutter)</li>
+    </ul>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: center; justify-items: center;">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <img src="assets/app_clock4.png" style="max-height: 135px; max-width: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); border: 1px solid #d0d7de;" />
+      <span style="font-size: 20px; font-weight: 700; color: #1f2328; margin-top: 4px;">Desktop</span>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <img src="assets/web.png" style="max-height: 135px; max-width: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); border: 1px solid #d0d7de;" />
+      <span style="font-size: 20px; font-weight: 700; color: #1f2328; margin-top: 4px;">Web</span>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <img src="assets/android.png" style="max-height: 135px; max-width: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); border: 1px solid #d0d7de;" />
+      <span style="font-size: 20px; font-weight: 700; color: #1f2328; margin-top: 4px;">Mobile</span>
+    </div>
+  </div>
+</div>
+
+<div class="contrib-subheading">Decisões de Arquitetura</div>
+
+<div class="contrib-grid">
+  <div class="contrib-card highlight">
+    <strong>1. Engine Gráfica</strong>
+    <p>Dart/Flutter unificado</p>
+  </div>
+  <div class="contrib-card dimmed">
+    <strong>2. UI Desacoplada</strong>
+    <p>Lógica headless em memória</p>
+  </div>
+  <div class="contrib-card dimmed">
+    <strong>3. Relógio Virtual</strong>
+    <p>Avanço via tick()</p>
+  </div>
+  <div class="contrib-card highlight">
+    <strong>4. NCLua &amp; CCWS</strong>
+    <p>Lua e CCWS virtualizados</p>
+  </div>
+</div>
+
+---
+
+<!-- _class: contrib-slide -->
+
+# Contribuições
+
+## Determinismo
+
+<div style="display: grid; grid-template-columns: 1fr 1.25fr; gap: 24px; align-items: center; height: 215px;">
+  <div>
+    <ul style="font-size: 23px; line-height: 1.5; color: #24292f; margin: 0; padding-left: 24px;">
+      <li>Modo <strong>headless</strong> em memória</li>
+      <li>Avanço por <code>tick()</code> orquestrado</li>
+      <li><strong>64 testes unitários</strong> em CI</li>
+    </ul>
+  </div>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="assets/headless_listing.png" style="max-height: 195px; max-width: 100%; object-fit: contain; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #d0d7de;" />
+  </div>
+</div>
+
+<div class="contrib-subheading">Decisões de Arquitetura</div>
+
+<div class="contrib-grid">
+  <div class="contrib-card dimmed">
+    <strong>1. Engine Gráfica</strong>
+    <p>Dart/Flutter unificado</p>
+  </div>
+  <div class="contrib-card highlight">
+    <strong>2. UI Desacoplada</strong>
+    <p>Lógica headless em memória</p>
+  </div>
+  <div class="contrib-card highlight">
+    <strong>3. Relógio Virtual</strong>
+    <p>Avanço via tick()</p>
+  </div>
+  <div class="contrib-card dimmed">
+    <strong>4. NCLua &amp; CCWS</strong>
+    <p>Lua e CCWS virtualizados</p>
+  </div>
+</div>
+
+---
+
+<!-- _class: contrib-slide -->
+
+# Contribuições
+
+## Debug
+
+<div style="display: grid; grid-template-columns: 1fr 1.25fr; gap: 24px; align-items: center; height: 215px;">
+  <div>
+    <ul style="font-size: 23px; line-height: 1.5; color: #24292f; margin: 0; padding-left: 24px;">
+      <li>Extensão <strong>ginga-code</strong> para VS Code</li>
+      <li>Inspeção <strong>passo a passo</strong> (step)</li>
+      <li>Sem necessidade de hardware STB</li>
+    </ul>
+  </div>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="assets/vscode.png" style="max-height: 195px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); border: 1px solid #d0d7de;" />
+  </div>
+</div>
+
+<div class="contrib-subheading">Decisões de Arquitetura</div>
+
+<div class="contrib-grid">
+  <div class="contrib-card dimmed">
+    <strong>1. Engine Gráfica</strong>
+    <p>Dart/Flutter unificado</p>
+  </div>
+  <div class="contrib-card highlight">
+    <strong>2. UI Desacoplada</strong>
+    <p>Lógica headless em memória</p>
+  </div>
+  <div class="contrib-card highlight">
+    <strong>3. Relógio Virtual</strong>
+    <p>Avanço via tick()</p>
+  </div>
+  <div class="contrib-card dimmed">
+    <strong>4. NCLua &amp; CCWS</strong>
+    <p>Lua e CCWS virtualizados</p>
+  </div>
+</div>
 
 ---
 
