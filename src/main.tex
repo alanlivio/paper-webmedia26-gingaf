@@ -63,7 +63,7 @@
 \renewcommand{\shortauthors}{Guedes et al.}
 
 \begin{abstract}
-Ginga, alongside its Ginga-NCL and Ginga-HTML5 subsystems, is an international standard for interactive digital television defined by the ITU-T/SBTVD. It is used in Brazil and several Latin American countries, and reaches over 60 million people. However, traditional Ginga development tools rely on heavy, platform-specific C++ implementations, creating a steep barrier to entry for developers. This paper presents \projectname{}, a Ginga architecture which focuses on decoupling  logic components from UI components to support running both Ginga-NCL and Ginga-HTML5 applications directly from the web browser, mobile, or desktop. On the web, we present a portable Lua interpreter and a Ginga-HTML5 player that intercepts HTTP requests to support Ginga-CC-WebServices. This architecture does not require any native browser plugins, paving the way for web-based development playgrounds and debugging environments.
+  Ginga, alongside its Ginga-NCL and Ginga-HTML5 subsystems, is an international standard for interactive digital television defined by the ITU-T/SBTVD. It is used in Brazil and several Latin American countries, and reaches over 60 million people. However, traditional Ginga development tools rely on heavy, platform-specific C++ implementations, creating a steep barrier to entry for developers. This paper presents \projectname{}, a Ginga architecture which focuses on decoupling  logic components from UI components to support running both Ginga-NCL and Ginga-HTML5 applications directly from the web browser, mobile, or desktop. On the web, we present a portable Lua interpreter and a Ginga-HTML5 player that intercepts HTTP requests to support Ginga-CC-WebServices. This architecture does not require any native browser plugins, paving the way for web-based development playgrounds and debugging environments.
 \end{abstract}
 
 \keywords{TV, Ginga, Ginga-NCL, Ginga-HTML5}
@@ -72,7 +72,7 @@ Ginga, alongside its Ginga-NCL and Ginga-HTML5 subsystems, is an international s
   \centering
   \begin{subfigure}{0.499\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{playground.png}
+    \includegraphics[width=\linewidth]{assets/playground.png}
     \Description{Ginga-NCL application video.ncl executing a video at 2 seconds in the GingaPlayground interface.}
     \caption{Execution of Ginga-NCL application \texttt{video.ncl} at $t=2$s.}
     \label{fig:play1}
@@ -80,14 +80,14 @@ Ginga, alongside its Ginga-NCL and Ginga-HTML5 subsystems, is an international s
   \hfill%
   \begin{subfigure}{0.499\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{playground-html.png}
+    \includegraphics[width=\linewidth]{assets/playground-html.png}
     \Description{Execution of a Ginga-HTML5 application current_service.html in the GingaPlayground interface.}
     \caption{Execution of Ginga-HTML5 application \texttt{current\_service.html}.}
     \label{fig:play2}
   \end{subfigure}\\[0.499em]
   \begin{subfigure}{0.499\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{playground-lua.png}
+    \includegraphics[width=\linewidth]{assets/playground-lua.png}
     \Description{Execution of a Ginga-NCL application lua_canvas.ncl drawing shapes on canvas using Lua scripts in the GingaPlayground interface.}
     \caption{Execution of Ginga-NCL application \texttt{lua\_canvas.ncl}}
     \label{fig:play3}
@@ -100,9 +100,9 @@ Ginga, alongside its Ginga-NCL and Ginga-HTML5 subsystems, is an international s
 
 \section{Introduction}
 
-The Ginga middleware is the international standard for interactive digital television by both the ITU-T~\cite{ITU_H761} and the Brazilian Digital Terrestrial Television System (SBTVD)~\cite{abnt_15606_2_2023}. Ginga utilizes the Nested Context Language (NCL), an XML-based declarative multimedia language. Ginga standard is legally mandated and installed on 100\% of certified Digital TV sets and set-top boxes sold in Brazil and several other Latin American countries adopting the ISDB-T framework. Because it is mandated by local telecommunications entities, every major television manufacturer must embed a Ginga implementation directly into their hardware firmware, making it one of the most widely deployed interactive middleware systems globally. This wide adoption results in over 60 million people impacted daily. It is also widely used for public interest broadcasting; for example, the Brazil4D~\cite{castro2016brazil} application targets low-income families to access public services, health information, and educational content. Furthermore, the application coding specification for the next-generation Brazilian digital television standard (TV 3.0) continues to advance the Ginga engine~\cite{santos2026overview}. 
+The Ginga middleware is the international standard for interactive digital television by both the ITU-T~\cite{ITU_H761} and the Brazilian Digital Terrestrial Television System (SBTVD)~\cite{abnt_15606_2_2023}. Ginga utilizes the Nested Context Language (NCL), an XML-based declarative multimedia language. Ginga standard is legally mandated and installed on 100\% of certified Digital TV sets and set-top boxes sold in Brazil and several other Latin American countries adopting the ISDB-T framework. Because it is mandated by local telecommunications entities, every major television manufacturer must embed a Ginga implementation directly into their hardware firmware, making it one of the most widely deployed interactive middleware systems globally. This wide adoption results in over 60 million people impacted daily. It is also widely used for public interest broadcasting; for example, the Brazil4D~\cite{castro2016brazil} application targets low-income families to access public services, health information, and educational content. Furthermore, the application coding specification for the next-generation Brazilian digital television standard (TV 3.0) continues to advance the Ginga engine~\cite{santos2026overview}.
 
-Despite the critical role and massive scale of Ginga, developers and researchers continue to face the \textbf{lack of a Web-based development environment}. This happens because traditional Ginga players, such as the reference PUC-Rio C++ implementations~\cite{ginga2013, ginga2018}, are tightly coupled to the native platform (targeting Linux-based digital TV receivers) and require specialized OS setups, compilers, and heavy multimedia frameworks to run. Moreover, the recent standardisation of new Ginga subsystems (Ginga-HTML5 and Ginga-CC-WebServices) added more complexity and limited the portability of these traditional C++ players. Therefore, developers and researchers cannot easily share, test, or prototype their code online. This creates a steep barrier, which contrasts sharply with the trend in modern programming ecosystems, where major frameworks provide instant web-based playgrounds. 
+Despite the critical role and massive scale of Ginga, developers and researchers continue to face the \textbf{lack of a Web-based development environment}. This happens because traditional Ginga players, such as the reference PUC-Rio C++ implementations~\cite{ginga2013, ginga2018}, are tightly coupled to the native platform (targeting Linux-based digital TV receivers) and require specialized OS setups, compilers, and heavy multimedia frameworks to run. Moreover, the recent standardisation of new Ginga subsystems (Ginga-HTML5 and Ginga-CC-WebServices) added more complexity and limited the portability of these traditional C++ players. Therefore, developers and researchers cannot easily share, test, or prototype their code online. This creates a steep barrier, which contrasts sharply with the trend in modern programming ecosystems, where major frameworks provide instant web-based playgrounds.
 
 \projectname{} addresses these challenges by introducing a portable Ginga architecture that focuses on decoupling logic and UI components.  By separating the logic (headless) execution engine from the visual rendering layer, we support running both subsystems directly from the web browser, mobile, or desktop. As a proof of concept and validation of this decoupled design, we developed GingaPlayground (Figure~\ref{fig:playground_res}), a web-based editor running directly in the browser without any native plugins or local installation.
 
@@ -115,8 +115,6 @@ We summarize our main contributions below:
   \item \textbf{NCLua and CCWS Support on the Web}: We present adaptations for embedding NCLua and CCWS to be able to run client-side by using a portable pure Dart Lua interpreter and overloading the browser's \texttt{fetch} API inside a sandboxed iframe.
 \end{itemize}
 
-
-
 The remainder of this paper is structured as follows. Section~\ref{sec:background} presents the background on the Ginga standard, and Section~\ref{sec:relatedwork} reviews related work. Section~\ref{sec:methodology} introduces the decoupled architecture of \projectname{}. Section~\ref{sec:nclplayer} and Section~\ref{sec:htmlccws} detail the execution of the Ginga-NCL and Ginga-HTML5 subsystems. Section~\ref{sec:playground} presents the GingaPlayground use case. Finally, Section~\ref{sec:remarks} concludes the paper.
 
 \section{Ginga Background}
@@ -125,20 +123,18 @@ The remainder of this paper is structured as follows. Section~\ref{sec:backgroun
 Figure~\ref{fig:architecture} depicts the architecture of the D-profile Ginga DTV Receiver introduced by the TV 2.5 specifications~\cite{moreno2020brief}. Dashed elements are the new components proposed in D-profile receivers, namely, Ginga-HTML5 and Ginga-CC-WebServices. In the following, we first detail the main components\footnote{Other components such as SI and DSMCC were omitted for simplicity.}.
 
 \begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\linewidth]{ginga.pdf}
-    \Description{Decoupled architecture of the D-Profile Ginga Receiver, showing the separated headless logic and rendering components for Ginga-NCL, NCLua, Ginga-HTML5, and Ginga-CC-WebServices.}
-    \caption{D-Profile Ginga Receiver (Source: \cite{moreno2020brief}).}
-    \label{fig:architecture}
+  \centering
+  \includegraphics[width=\linewidth]{assets/ginga.pdf}
+  \Description{Decoupled architecture of the D-Profile Ginga Receiver, showing the separated headless logic and rendering components for Ginga-NCL, NCLua, Ginga-HTML5, and Ginga-CC-WebServices.}
+  \caption{D-Profile Ginga Receiver (Source: \cite{moreno2020brief}).}
+  \label{fig:architecture}
 \end{figure}
 
 \textbf{Ginga-NCL} is the subsystem responsible for controlling NCL multimedia applications. NCL~\cite{soares_nested_2006_model} is a declarative language that defines temporal synchronization, layout reuse, multi-device presentation, and embedded Lua scripting\footnote{\url{https://www.lua.org}}. It also provides an API for on-the-fly modifications (NCL editing commands) and handles media from both broadcast and broadband channels. To accommodate varying hardware capabilities, the SBTVD Forum defines specific receiver profiles that applications can target to ensure compatibility~\cite{abnt_15606_2_2023}.
 
-
-To demonstrate the structure of NCL applications, we use a sample application (\texttt{video.ncl}) presented in Listing~\ref{lst:ncl}. The presentation defines a primary video (\texttt{video}) in lines~\ref{line:video_start}--\ref{line:video_end}, a green background media (\texttt{green\_bg}) in lines~\ref{line:green_start}--\ref{line:green_end}, and a red background media (\texttt{red\_bg}) in lines~\ref{line:red_start}--\ref{line:red_end} with an explicit duration of 2 seconds. Temporal behavior is coordinated by link elements: link \texttt{l1} starts the green background when area \texttt{a1} of the video begins (at 2s), and link \texttt{l2} stops the green background and starts the red background when area \texttt{a1} ends (at 4s). The application ends when the \texttt{red\_bg} ends at 6s (explicitDur 2s) and the main video ends decoding at 7s (video content duration). 
+To demonstrate the structure of NCL applications, we use a sample application (\texttt{video.ncl}) presented in Listing~\ref{lst:ncl}. The presentation defines a primary video (\texttt{video}) in lines~\ref{line:video_start}--\ref{line:video_end}, a green background media (\texttt{green\_bg}) in lines~\ref{line:green_start}--\ref{line:green_end}, and a red background media (\texttt{red\_bg}) in lines~\ref{line:red_start}--\ref{line:red_end} with an explicit duration of 2 seconds. Temporal behavior is coordinated by link elements: link \texttt{l1} starts the green background when area \texttt{a1} of the video begins (at 2s), and link \texttt{l2} stops the green background and starts the red background when area \texttt{a1} ends (at 4s). The application ends when the \texttt{red\_bg} ends at 6s (explicitDur 2s) and the main video ends decoding at 7s (video content duration).
 
 \newpage
-
 
 \begin{lstlisting}[language=XML, escapeinside={(*}{*)}, caption={video.ncl source code}, basicstyle=\scriptsize\ttfamily, frame=single, breaklines=true, aboveskip=1mm, belowskip=1mm, captionpos=b, numbers=left, label={lst:ncl}]
 <ncl>
@@ -169,16 +165,16 @@ To demonstrate the structure of NCL applications, we use a sample application (\
 </ncl>
 \end{lstlisting}
 
-\textbf{Ginga-HTML5}~\cite{abnt_15606_10_2026} supports the execution of Web-based applications (\textit{e.g.}, Listing~\ref{lst:html5}) natively within the Ginga environment. It provides a standard web engine capable of rendering HTML5, CSS3, and executing JavaScript, allowing developers to author interactive digital television applications using modern web technologies. 
+\textbf{Ginga-HTML5}~\cite{abnt_15606_10_2026} supports the execution of Web-based applications (\textit{e.g.}, Listing~\ref{lst:html5}) natively within the Ginga environment. It provides a standard web engine capable of rendering HTML5, CSS3, and executing JavaScript, allowing developers to author interactive digital television applications using modern web technologies.
 
 \textbf{Ginga-CC-WebServices} focuses on integrating the experience of the broadcasting and broadband environments.
 To do this, it supports a set of services implemented in the form of REST APIs.
 Thus, as indicated in Figure~\ref{fig:architecture}, its functionalities can be used by:
 1) native Smart TV applications, web-based applications, and Ginga applications in the DTV receiver;
-2) devices present in the home environment, allowing, \textit{e.g.}, second-screen scenarios. 
+2) devices present in the home environment, allowing, \textit{e.g.}, second-screen scenarios.
 
 According to its standard~\cite{abnt_15606_11}, Ginga-CC-WebServices listens by default on port 44642 and can be discovered by multicasting an HTTP M-SEARCH request.
-Its functionalities include not only functions for accessing content from broadcasting, but also functions that standardize access to advanced features of the DTV environment (\textit{e.g.},  platform characteristics, supported DRM, media playback capabilities). 
+Its functionalities include not only functions for accessing content from broadcasting, but also functions that standardize access to advanced features of the DTV environment (\textit{e.g.},  platform characteristics, supported DRM, media playback capabilities).
 We briefly introduce each API and show its main endpoints in what follows.
 In particular, the identifiers in square brackets should be filled in the API request. For instance, the \texttt{GET} \texttt{http(s)://\textless{}host\textgreater{}/dtv/current-service} returns information for the selected DTV service.
 
@@ -218,8 +214,6 @@ fetchService();
 </html>
 \end{lstlisting}
 
-
-
 \section{Related Work}
 \label{sec:relatedwork}
 
@@ -231,13 +225,13 @@ The development of Ginga players has historically been led by the TeleMídia Lab
   \resizebox{\linewidth}{!}{%
     \begin{tabular}{l c c c c c c c c}
       \toprule
-      \textbf{Work} & \textbf{Language} & \textbf{Multimedia Engine} &  \textbf{Web Deploy} & \textbf{Mobile Deploy} & \textbf{Scheduling} & \textbf{Ginga-NCL} & \textbf{Ginga-HTML5} & \textbf{CCWS} \\
+      \textbf{Work}                                              & \textbf{Language} & \textbf{Multimedia Engine} & \textbf{Web Deploy} & \textbf{Mobile Deploy} & \textbf{Scheduling}         & \textbf{Ginga-NCL} & \textbf{Ginga-HTML5} & \textbf{CCWS} \\
       \midrule
-       PUC-Rio Ginga v0.13 \cite{ginga2013,moreno2010conciliando} & C++ & SDL/FFmpeg & No & No & Event-Listener & Yes & No & No \\
-       PUC-Rio Ginga v1.0~\cite{ginga2018,dodsworth2018dynamic} & C++ & GTK/Gstreamer & No & No & Synchronous \texttt{tick()} & Yes & No & No \\
-      WebNCL~\cite{webncl2013} & JavaScript & HTML5 &Yes & No & Event-Listener & Yes & No & No \\
-      NuGinga~\cite{nuginga18,nuginga_playcode20} & C++ (WASM) & HTML5 & Yes & Yes & Event-Listener & Yes & No & No \\
-      \projectname{} (ours) & Dart & Flutter & Yes & Yes & Synchronous \texttt{tick()} & Yes & Yes & Yes \\
+      PUC-Rio Ginga v0.13 \cite{ginga2013,moreno2010conciliando} & C++               & SDL/FFmpeg                 & No                  & No                     & Event-Listener              & Yes                & No                   & No            \\
+      PUC-Rio Ginga v1.0~\cite{ginga2018,dodsworth2018dynamic}   & C++               & GTK/Gstreamer              & No                  & No                     & Synchronous \texttt{tick()} & Yes                & No                   & No            \\
+      WebNCL~\cite{webncl2013}                                   & JavaScript        & HTML5                      & Yes                 & No                     & Event-Listener              & Yes                & No                   & No            \\
+      NuGinga~\cite{nuginga18,nuginga_playcode20}                & C++ (WASM)        & HTML5                      & Yes                 & Yes                    & Event-Listener              & Yes                & No                   & No            \\
+      \projectname{} (ours)                                      & Dart              & Flutter                    & Yes                 & Yes                    & Synchronous \texttt{tick()} & Yes                & Yes                  & Yes           \\
       \bottomrule
     \end{tabular}%
   }
@@ -246,11 +240,11 @@ The development of Ginga players has historically been led by the TeleMídia Lab
 \begin{figure}[h!]
   \centering
   \begin{tikzpicture}[
-    package/.style={draw, rectangle, rounded corners=5pt, minimum width=3.0cm, minimum height=3.0cm, fill=gray!2, dashed, thick, align=center},
-    comp/.style={draw, rectangle, rounded corners=1.5pt, minimum width=1.6cm, minimum height=0.6cm, fill=gray!5, thick, align=center, font=\scriptsize},
-    arrow/.style={-latex, thick},
-    redarrow/.style={-latex, thick, color=red!70!black}
-  ]
+      package/.style={draw, rectangle, rounded corners=5pt, minimum width=3.0cm, minimum height=3.0cm, fill=gray!2, dashed, thick, align=center},
+      comp/.style={draw, rectangle, rounded corners=1.5pt, minimum width=1.6cm, minimum height=0.6cm, fill=gray!5, thick, align=center, font=\scriptsize},
+      arrow/.style={-latex, thick},
+      redarrow/.style={-latex, thick, color=red!70!black}
+    ]
     \node[package] (doc_pkg) at (0, 0) {};
     \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at (doc_pkg.north west) {NCL logic};
 
@@ -275,7 +269,7 @@ The development of Ginga players has historically been led by the TeleMídia Lab
 
 PUC-Rio Ginga v0.13.6~\cite{ginga2013,moreno2010conciliando} was designed for early-generation digital TV receivers with resource constraints. It used SDL\footnote{\url{https://www.libsdl.org}} as the UI context for rendering graphics and managing window events, and FFmpeg\footnote{\url{https://ffmpeg.org}} for audio/video decoding. Its execution model relied on event listeners to handle asynchronous media playback: dedicated threads monitored AV decoder callbacks and posted events into the NCL engine, creating concurrency that was difficult to test deterministically. Recently, PUC-Rio Ginga v1.0~\cite{ginga2018,dodsworth2018dynamic} modernized the renderer by adopting GTK\footnote{\url{https://www.gtk.org}} as the UI context and GStreamer\footnote{\url{https://gstreamer.freedesktop.org}} as the AV decoding pipeline. A key architectural advance was the move to a mono-threaded model inspired by synchronous execution: rather than spawning per-media threads, the engine advances state through a central tick loop, reducing race conditions and improving predictability. Another notable early implementation is \textbf{WebNCL}, a web-based NCL player fully implemented in JavaScript that did not support Lua.
 
-The fundamental architectural issue preventing these implementations from running on the web is the tight coupling between the NCL logic layer and the native operating system resources. As illustrated in Figure~\ref{fig:old_arch}, in traditional C++ Ginga architectures, a \texttt{Media} object within the NCL Document directly instantiates and drives a native multimedia element (such as a GTK widget or a GStreamer pipeline). The state machine logic blocks on native rendering calls (\texttt{draw()}), and the media objects trigger NCL transitions directly via system thread callbacks (\texttt{onEvent()}). 
+The fundamental architectural issue preventing these implementations from running on the web is the tight coupling between the NCL logic layer and the native operating system resources. As illustrated in Figure~\ref{fig:old_arch}, in traditional C++ Ginga architectures, a \texttt{Media} object within the NCL Document directly instantiates and drives a native multimedia element (such as a GTK widget or a GStreamer pipeline). The state machine logic blocks on native rendering calls (\texttt{draw()}), and the media objects trigger NCL transitions directly via system thread callbacks (\texttt{onEvent()}).
 
 This bidirectional, tightly bound architecture makes it exceptionally difficult to virtualize the execution. In a web browser environment (\textit{e.g.}, using WebAssembly), there is no access to raw socket connections for Ginga-CC-WebServices, no native threading model compatible with GStreamer, and no direct frame buffer for GTK to paint onto. Furthermore, JavaScript's single-threaded event loop and strict security sandboxes make blocking NCL state machine evaluations completely incompatible with web execution.
 
@@ -286,19 +280,17 @@ Table~\ref{tab:comparison} compares the features of \projectname{} with traditio
 \section{Methodology}
 \label{sec:methodology}
 
-To overcome the inherent coupling between NCL logic and native rendering pipelines, \projectname{} introduces a novel architecture built using Dart and the Flutter\footnote{\url{https://docs.flutter.dev/}} framework. A key architectural decision in our proposed architecture is the strict separation of the NCL state machine from the visual presentation layer, leveraging Dart's multiplatform capabilities. By implementing the core \texttt{NCLDocument} engine entirely in pure Dart as a non-UI component, we guarantee that the complex NCL logic can be natively compiled and executed across web, mobile, and desktop environments without requiring platform-specific bindings or C++ bridges. Figure~\ref{fig:layered_arch} illustrates this high-level layered architecture. 
-
-
+To overcome the inherent coupling between NCL logic and native rendering pipelines, \projectname{} introduces a novel architecture built using Dart and the Flutter\footnote{\url{https://docs.flutter.dev/}} framework. A key architectural decision in our proposed architecture is the strict separation of the NCL state machine from the visual presentation layer, leveraging Dart's multiplatform capabilities. By implementing the core \texttt{NCLDocument} engine entirely in pure Dart as a non-UI component, we guarantee that the complex NCL logic can be natively compiled and executed across web, mobile, and desktop environments without requiring platform-specific bindings or C++ bridges. Figure~\ref{fig:layered_arch} illustrates this high-level layered architecture.
 
 \begin{figure}[ht!]
   \centering
   \begin{tikzpicture}[
-    layer/.style={draw, rectangle, rounded corners=2pt, minimum height=0.4cm, fill=gray!15, thick, align=center, font=\scriptsize\bfseries},
-    outerbox/.style={draw, rectangle, rounded corners=2pt, minimum height=1.5cm, fill=gray!5, thick, align=center, font=\scriptsize\bfseries},
-    innerbox/.style={draw, rectangle, rounded corners=2pt, minimum height=0.4cm, fill=gray!25, thick, align=center, font=\tiny\bfseries},
-    singlebox/.style={draw, rectangle, rounded corners=2pt, minimum height=1.5cm, fill=gray!5, thick, align=center, font=\scriptsize\bfseries},
-    gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
-  ]
+      layer/.style={draw, rectangle, rounded corners=2pt, minimum height=0.4cm, fill=gray!15, thick, align=center, font=\scriptsize\bfseries},
+      outerbox/.style={draw, rectangle, rounded corners=2pt, minimum height=1.5cm, fill=gray!5, thick, align=center, font=\scriptsize\bfseries},
+      innerbox/.style={draw, rectangle, rounded corners=2pt, minimum height=0.4cm, fill=gray!25, thick, align=center, font=\tiny\bfseries},
+      singlebox/.style={draw, rectangle, rounded corners=2pt, minimum height=1.5cm, fill=gray!5, thick, align=center, font=\scriptsize\bfseries},
+      gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
+    ]
     \draw[gingafbox] (-3.3, 0.2) rectangle (3.3, 2.6);
     \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at (-3.3, 2.6) {logic components};
 
@@ -306,12 +298,12 @@ To overcome the inherent coupling between NCL logic and native rendering pipelin
     \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at (-3.3, 5.8) {UI components};
 
     \node[layer, minimum width=5.8cm] (dart) at (0, 0.6) {native and JavaScript-enabled language};
-    
+
     \node[outerbox, minimum width=2.8cm] (ncldoc) at (-1.5, 1.75) {};
     \node[anchor=north, font=\scriptsize\bfseries, inner sep=2pt] at (ncldoc.north) {NCLDocument};
     \node[innerbox, minimum width=2.4cm] (parser_logic) at (-1.5, 2.0) {Parser};
     \node[innerbox, minimum width=2.4cm] (nclua_logic) at (-1.5, 1.4) {NCLua};
-    
+
     \node[outerbox, minimum width=2.8cm] (ccws) at (1.5, 1.75) {};
     \node[anchor=north, font=\scriptsize\bfseries, inner sep=2pt] at (ccws.north) {CCWS};
     \node[innerbox, minimum width=2.4cm] (httpserver_logic) at (1.5, 2.0) {HTTPServer};
@@ -323,7 +315,7 @@ To overcome the inherent coupling between NCL logic and native rendering pipelin
     \node[anchor=north, font=\scriptsize\bfseries, inner sep=2pt] at (nclwidget.north) {NCLWidget};
     \node[innerbox, minimum width=2.4cm] (ncluawidget) at (-1.5, 5.05) {NCLuaWidget};
     \node[innerbox, minimum width=2.4cm] (nclmediastate_widget) at (-1.5, 4.55) {NCLMediaState};
-    
+
     \node[outerbox, minimum width=2.8cm] (htmlwidget) at (1.5, 4.85) {};
     \node[anchor=north, font=\scriptsize\bfseries, inner sep=2pt] at (htmlwidget.north) {HTMLWidget};
     \node[innerbox, minimum width=2.4cm] (webview) at (1.5, 5.1) {webview};
@@ -334,12 +326,9 @@ To overcome the inherent coupling between NCL logic and native rendering pipelin
   \label{fig:layered_arch}
 \end{figure}
 
-At the bottom, the non-UI \texttt{NCLDocument} logic component operates within the logic layer. This layer is implemented in a native and JavaScript-enabled language, which is concretely realized by Dart. Dart enables compiling to native machine code for desktop and mobile, and uses the Dart2JS compiler to target highly optimized JavaScript for web execution. The presentation layer sits above this logic and is driven by a native and web-enabled multimedia engine. In our implementation, this engine is Flutter, which utilizes the CanvasKit renderer\footnote{\url{https://skia.org/docs/user/modules/canvaskit/}} (a WebAssembly build of Skia) to achieve high-performance, pixel-perfect layout and rendering in the browser without relying on browser-specific DOM elements. Within this structure, the presentation layer consists of the \texttt{NCLWidget} (which embeds the \texttt{NCLuaWidget} and \texttt{NCLMediaState}), the \texttt{HTMLWidget}, and the \texttt{webview}. Crucially, \texttt{NCLua} runs securely within the \texttt{NCLDocument} logic component, while the Ginga-CC-WebServices logic component exposes services via an embedded \texttt{HTTPServer} and routes them internally using the \texttt{router}. 
-
-
+At the bottom, the non-UI \texttt{NCLDocument} logic component operates within the logic layer. This layer is implemented in a native and JavaScript-enabled language, which is concretely realized by Dart. Dart enables compiling to native machine code for desktop and mobile, and uses the Dart2JS compiler to target highly optimized JavaScript for web execution. The presentation layer sits above this logic and is driven by a native and web-enabled multimedia engine. In our implementation, this engine is Flutter, which utilizes the CanvasKit renderer\footnote{\url{https://skia.org/docs/user/modules/canvaskit/}} (a WebAssembly build of Skia) to achieve high-performance, pixel-perfect layout and rendering in the browser without relying on browser-specific DOM elements. Within this structure, the presentation layer consists of the \texttt{NCLWidget} (which embeds the \texttt{NCLuaWidget} and \texttt{NCLMediaState}), the \texttt{HTMLWidget}, and the \texttt{webview}. Crucially, \texttt{NCLua} runs securely within the \texttt{NCLDocument} logic component, while the Ginga-CC-WebServices logic component exposes services via an embedded \texttt{HTTPServer} and routes them internally using the \texttt{router}.
 
 The subsequent sections detail these architectural layers. Section~\ref{sec:nclplayer} discusses the cross-platform Ginga-NCL execution, while Section~\ref{sec:htmlccws} details the cross-platform Ginga-HTML5  and Ginga-CC-WebServices.
-
 
 \section{Cross-Platform Ginga-NCL}
 \label{sec:nclplayer}
@@ -349,11 +338,11 @@ The subsequent sections detail these architectural layers. Section~\ref{sec:nclp
 \begin{figure}[th!]
   \centering
   \begin{tikzpicture}[
-    package/.style={draw, rectangle, rounded corners=5pt, minimum width=3.0cm, minimum height=3.0cm, fill=gray!2, dashed, thick, align=center},
-    comp/.style={draw, rectangle, rounded corners=1.5pt, minimum width=1.6cm, minimum height=0.6cm, fill=gray!5, thick, align=center, font=\scriptsize},
-    arrow/.style={-latex, thick},
-    greenarrow/.style={-latex, thick, color=green!50!black}
-  ]
+      package/.style={draw, rectangle, rounded corners=5pt, minimum width=3.0cm, minimum height=3.0cm, fill=gray!2, dashed, thick, align=center},
+      comp/.style={draw, rectangle, rounded corners=1.5pt, minimum width=1.6cm, minimum height=0.6cm, fill=gray!5, thick, align=center, font=\scriptsize},
+      arrow/.style={-latex, thick},
+      greenarrow/.style={-latex, thick, color=green!50!black}
+    ]
     \node[package] (app_pkg) at (0, 0) {};
     \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at (app_pkg.north west) {NCL UI};
 
@@ -393,8 +382,8 @@ The \texttt{start()} function begins by parsing the NCL XML input and validating
 \begin{figure}[ht]
   \centering
   \begin{tikzpicture}[
-    classbox/.style={draw, rectangle, rounded corners=1.5pt, minimum width=1.6cm, minimum height=0.6cm, align=center, fill=gray!5, thick, font=\scriptsize}
-  ]
+      classbox/.style={draw, rectangle, rounded corners=1.5pt, minimum width=1.6cm, minimum height=0.6cm, align=center, fill=gray!5, thick, font=\scriptsize}
+    ]
     \node [classbox] (ncldoc) at (-2.2, 2.0) {\textbf{NCLDocument} \\ clock, actionQueue, uiQueue, \\ start() tick() stop()};
     \node [classbox] (element) at (1.0, 2.0) {\textbf{Element} \\ id, rawAttributes};
     \node [classbox] (link) at (-2.2, 0.9) {\textbf{Link}};
@@ -407,7 +396,7 @@ The \texttt{start()} function begins by parsing the NCL XML input and validating
 
     \draw [thick, -{Triangle[open]}] (node.north) -- (element.south);
     \draw [thick] (link.north) |- (1.0, 1.45);
-    
+
     \draw [thick, -{Triangle[open]}] (media.north) -- (node.south);
     \draw [thick] (composition.north) |- (1.0, 0.35);
 
@@ -453,7 +442,7 @@ The reliability of the cross-platform codebase is maintained through an automate
 \subsection{\projectname{} NCL UI}
 \label{sec:nclui2}
 
-The \projectname{} NCL UI layer is responsible for visual presentation. \texttt{NCLWidget} drives the engine by calling \texttt{tick()} on \texttt{NCLDocument} (arrow~2 in Figure~\ref{fig:arch}) and delegates rendering to \texttt{NCLMediaState}, which reads the current visual properties of each \texttt{Media} node directly from the NCL logic component (arrow~5). The interface consists of a root \texttt{Ginga} widget that uses a Flutter \texttt{Stack} to lay out elements. A background audio/video widget (\texttt{main\_av\_widget}) is placed at the bottom, while the active media elements are rendered on top within the NCL presentation surface. The \texttt{WidgetFactory} maps NCL elements to native Flutter widgets. 
+The \projectname{} NCL UI layer is responsible for visual presentation. \texttt{NCLWidget} drives the engine by calling \texttt{tick()} on \texttt{NCLDocument} (arrow~2 in Figure~\ref{fig:arch}) and delegates rendering to \texttt{NCLMediaState}, which reads the current visual properties of each \texttt{Media} node directly from the NCL logic component (arrow~5). The interface consists of a root \texttt{Ginga} widget that uses a Flutter \texttt{Stack} to lay out elements. A background audio/video widget (\texttt{main\_av\_widget}) is placed at the bottom, while the active media elements are rendered on top within the NCL presentation surface. The \texttt{WidgetFactory} maps NCL elements to native Flutter widgets.
 
 Currently implemented widgets include \texttt{ImageWidget} (which displays images and handles image format caching), \texttt{AVWidget} (which renders native video/audio playback and supports state tracking), and \texttt{TextWidget} (which renders formatted text blocks using bounds properties). Each widget extends \texttt{BaseWidget} to map NCL layout properties (such as \texttt{left}, \texttt{top}, \texttt{width}, \texttt{height}, and \texttt{background}) to Flutter's \texttt{Positioned} and \texttt{BoxDecoration} parameters.
 
@@ -467,7 +456,7 @@ To show the correctness and multiplatform execution capabilities of \projectname
   \centering
   \begin{subfigure}{0.7\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{app_clock4.png}
+    \includegraphics[width=\linewidth]{assets/app_clock4.png}
     \Description{Sample NCL application execution on Windows showing a video player with a green overlay in the bottom-left.}
     \caption{Windows.}
     \label{fig:res_windows}
@@ -475,14 +464,14 @@ To show the correctness and multiplatform execution capabilities of \projectname
   \hfill%
   \begin{subfigure}{0.3\linewidth}
     \centering
-    \includegraphics[height=3.4cm, keepaspectratio]{android.png}
+    \includegraphics[height=3.4cm, keepaspectratio]{assets/android.png}
     \Description{Sample NCL application execution on Android showing the video player with a green overlay.}
     \caption{Android.}
     \label{fig:res_android}
   \end{subfigure}%
   \begin{subfigure}{0.4\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{web.png}
+    \includegraphics[width=\linewidth]{assets/web.png}
     \Description{Sample NCL application execution on a Web browser showing the video player with a green overlay.}
     \caption{Web.}
     \label{fig:res_web}
@@ -507,31 +496,31 @@ A major feature of NCLua is its ability to draw graphics onto a canvas using imp
 \begin{figure}[ht!]
   \centering
   \resizebox{\columnwidth}{!}{
-  \begin{tikzpicture}[
-    node distance=0.7cm and 2.8cm,
-    block/.style={draw, rectangle, rounded corners, minimum width=2.8cm, minimum height=0.9cm, align=center, fill=gray!5},
-    arrow/.style={-latex, thick},
-    gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
-  ]
-    \node[block] (nclua) {NCLua};
-    \node[block, below=of nclua] (interpreter) {\texttt{lua\_dardo}\\(Dart Interpreter)};
+    \begin{tikzpicture}[
+        node distance=0.7cm and 2.8cm,
+        block/.style={draw, rectangle, rounded corners, minimum width=2.8cm, minimum height=0.9cm, align=center, fill=gray!5},
+        arrow/.style={-latex, thick},
+        gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
+      ]
+      \node[block] (nclua) {NCLua};
+      \node[block, below=of nclua] (interpreter) {\texttt{lua\_dardo}\\(Dart Interpreter)};
 
-    \node[block, right=2.8cm of nclua] (luawidget) {\texttt{NCLuaWidgetState}};
-    \node[block, below=of luawidget] (painter) {\texttt{CustomPainter}\footnotemark};
+      \node[block, right=2.8cm of nclua] (luawidget) {\texttt{NCLuaWidgetState}};
+      \node[block, below=of luawidget] (painter) {\texttt{CustomPainter}\footnotemark};
 
-    % Logic Box
-    \draw[gingafbox] ($(interpreter.south west) + (-0.4,-0.4)$) rectangle ($(nclua.north east) + (0.4,0.4)$);
-    \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at ($(nclua.north west) + (-0.4,0.4)$) {NCL Logic};
+      % Logic Box
+      \draw[gingafbox] ($(interpreter.south west) + (-0.4,-0.4)$) rectangle ($(nclua.north east) + (0.4,0.4)$);
+      \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at ($(nclua.north west) + (-0.4,0.4)$) {NCL Logic};
 
-    % UI Box
-    \draw[gingafbox] ($(painter.south west) + (-0.4,-0.4)$) rectangle ($(luawidget.north east) + (0.4,0.4)$);
-    \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at ($(luawidget.north west) + (-0.4,0.4)$) {NCL UI};
+      % UI Box
+      \draw[gingafbox] ($(painter.south west) + (-0.4,-0.4)$) rectangle ($(luawidget.north east) + (0.4,0.4)$);
+      \node[anchor=south west, font=\scriptsize\bfseries\itshape, text=gray!80!black] at ($(luawidget.north west) + (-0.4,0.4)$) {NCL UI};
 
-    \draw[arrow] ([xshift=-15pt]nclua.south) -- node[left, font=\scriptsize] {1) execute()} ([xshift=-15pt]interpreter.north);
-    \draw[arrow] ([xshift=15pt]interpreter.north) -- node[right, font=\scriptsize] {2) canvas method} ([xshift=15pt]nclua.south);
-    \draw[arrow] (nclua.east) -- node[above, font=\scriptsize] {3) send canvas} (luawidget.west);
-    \draw[arrow] (luawidget.south) -- node[right, font=\scriptsize] {4) paint()} (painter.north);
-  \end{tikzpicture}
+      \draw[arrow] ([xshift=-15pt]nclua.south) -- node[left, font=\scriptsize] {1) execute()} ([xshift=-15pt]interpreter.north);
+      \draw[arrow] ([xshift=15pt]interpreter.north) -- node[right, font=\scriptsize] {2) canvas method} ([xshift=15pt]nclua.south);
+      \draw[arrow] (nclua.east) -- node[above, font=\scriptsize] {3) send canvas} (luawidget.west);
+      \draw[arrow] (luawidget.south) -- node[right, font=\scriptsize] {4) paint()} (painter.north);
+    \end{tikzpicture}
   }
   \Description{Pipeline diagram showing how Lua canvas drawing calls from lua_dardo are buffered in NCLua and sent as command lists to the CustomPainter in NCLuaWidgetState for rendering.}
   \caption{The NCLua Canvas Translation Pipeline. NCLua executes Lua via \texttt{lua\_dardo}, which calls back canvas methods. NCLua forwards those calls to \texttt{NCLuaWidgetState}, which delegates rendering to a \texttt{CustomPainter}.}
@@ -557,29 +546,29 @@ When running in a web browser environment (Figure~\ref{fig:ccws_intercept}b), ex
   \begin{subfigure}{0.48\linewidth}
     \centering
     \resizebox{\columnwidth}{!}{
-    \begin{tikzpicture}[
-      node distance=0.4cm and 0cm,
-      block/.style={draw, rectangle, rounded corners, minimum width=3.5cm, minimum height=0.9cm, align=center, fill=gray!25},
-      outerbox/.style={draw, rectangle, rounded corners=2pt, thick, minimum width=3.5cm, minimum height=1.4cm, fill=gray!5},
-      innerbox/.style={draw, rectangle, rounded corners, minimum width=3.1cm, minimum height=0.6cm, align=center, fill=gray!25},
-      arrow/.style={-latex, thick},
-      gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
-    ]
-      \useasboundingbox (-2.5, -5.7) rectangle (2.6, 1.0);
-      \node[outerbox, minimum width=4.3cm, minimum height=1.7cm] (html5_outer) at (0, 0) {};
-      \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (html5_outer.north) {Ginga-HTML5};
-      
-      \node[block] (htmlapp) {HTML App\\(WebView)};
-      \node[block, below=of htmlapp, draw=none, fill=none, text opacity=0] (shim) {Fetch Overload\\Shim};
-      \node[block, below=of shim, draw=none, fill=none, text opacity=0] (flutter) {Flutter NCL UI};
-      
-      \node[outerbox] (ccws) at (0, -4.95) {};
-      \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (ccws.north) {\CCWS};
-      \node[innerbox] (httpserver) at (0, -5.2) {HTTPServer};
-      
-      \draw[arrow] ([xshift=-35pt]htmlapp.south) -- node[left, font=\scriptsize] {1) HTTP Request} ([xshift=-35pt]httpserver.north);
-      \draw[arrow, dashed] ([xshift=35pt]httpserver.north) -- node[right, font=\scriptsize] {2) HTTP Response} ([xshift=35pt]htmlapp.south);
-    \end{tikzpicture}
+      \begin{tikzpicture}[
+          node distance=0.4cm and 0cm,
+          block/.style={draw, rectangle, rounded corners, minimum width=3.5cm, minimum height=0.9cm, align=center, fill=gray!25},
+          outerbox/.style={draw, rectangle, rounded corners=2pt, thick, minimum width=3.5cm, minimum height=1.4cm, fill=gray!5},
+          innerbox/.style={draw, rectangle, rounded corners, minimum width=3.1cm, minimum height=0.6cm, align=center, fill=gray!25},
+          arrow/.style={-latex, thick},
+          gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
+        ]
+        \useasboundingbox (-2.5, -5.7) rectangle (2.6, 1.0);
+        \node[outerbox, minimum width=4.3cm, minimum height=1.7cm] (html5_outer) at (0, 0) {};
+        \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (html5_outer.north) {Ginga-HTML5};
+
+        \node[block] (htmlapp) {HTML App\\(WebView)};
+        \node[block, below=of htmlapp, draw=none, fill=none, text opacity=0] (shim) {Fetch Overload\\Shim};
+        \node[block, below=of shim, draw=none, fill=none, text opacity=0] (flutter) {Flutter NCL UI};
+
+        \node[outerbox] (ccws) at (0, -4.95) {};
+        \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (ccws.north) {\CCWS};
+        \node[innerbox] (httpserver) at (0, -5.2) {HTTPServer};
+
+        \draw[arrow] ([xshift=-35pt]htmlapp.south) -- node[left, font=\scriptsize] {1) HTTP Request} ([xshift=-35pt]httpserver.north);
+        \draw[arrow, dashed] ([xshift=35pt]httpserver.north) -- node[right, font=\scriptsize] {2) HTTP Response} ([xshift=35pt]htmlapp.south);
+      \end{tikzpicture}
     }
     \caption{Native Clients}
   \end{subfigure}%
@@ -587,33 +576,33 @@ When running in a web browser environment (Figure~\ref{fig:ccws_intercept}b), ex
   \begin{subfigure}{0.48\linewidth}
     \centering
     \resizebox{\columnwidth}{!}{
-    \begin{tikzpicture}[
-      node distance=0.4cm and 0cm,
-      block/.style={draw, rectangle, rounded corners, minimum width=3.5cm, minimum height=0.9cm, align=center, fill=gray!25},
-      outerbox/.style={draw, rectangle, rounded corners=2pt, thick, minimum width=3.5cm, minimum height=1.4cm, fill=gray!5},
-      innerbox/.style={draw, rectangle, rounded corners, minimum width=3.1cm, minimum height=0.6cm, align=center, fill=gray!25},
-      arrow/.style={-latex, thick},
-      gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
-    ]
-      \useasboundingbox (-2.5, -5.7) rectangle (2.6, 1.0);
-      \node[outerbox, minimum width=4.3cm, minimum height=4.3cm] (html5_outer) at (0, -1.3) {};
-      \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (html5_outer.north) {Ginga-HTML5};
-      
-      \node[block] (htmlapp) {HTML App\\(iframe)};
-      \node[block, below=of htmlapp] (shim) {Fetch Overload\\Shim};
-      \node[block, below=of shim] (flutter) {html.MessageEvent};
-      
-      \node[outerbox] (ccws) at (0, -4.95) {};
-      \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (ccws.north) {\CCWS};
-      \node[innerbox] (router) at (0, -5.2) {Router};
-      
-      \draw[arrow] ([xshift=-15pt]htmlapp.south) -- node[left, font=\scriptsize] {1) fetch()} ([xshift=-15pt]shim.north);
-      \draw[arrow] ([xshift=-15pt]shim.south) -- node[left, font=\scriptsize] {2) Intercept} ([xshift=-15pt]flutter.north);
-      \draw[arrow] ([xshift=-35pt]flutter.south) -- node[left, font=\scriptsize] {3) Route} ([xshift=-35pt]router.north);
-      \draw[arrow, dashed] ([xshift=35pt]router.north) -- node[right, font=\scriptsize] {4) Payload} ([xshift=35pt]flutter.south);
-      \draw[arrow, dashed] ([xshift=15pt]flutter.north) -- node[right, font=\scriptsize] {5) Forward} ([xshift=15pt]shim.south);
-      \draw[arrow, dashed] ([xshift=35pt]shim.north) -- node[right, font=\scriptsize] {6) Promise} ([xshift=35pt]htmlapp.south);
-    \end{tikzpicture}
+      \begin{tikzpicture}[
+          node distance=0.4cm and 0cm,
+          block/.style={draw, rectangle, rounded corners, minimum width=3.5cm, minimum height=0.9cm, align=center, fill=gray!25},
+          outerbox/.style={draw, rectangle, rounded corners=2pt, thick, minimum width=3.5cm, minimum height=1.4cm, fill=gray!5},
+          innerbox/.style={draw, rectangle, rounded corners, minimum width=3.1cm, minimum height=0.6cm, align=center, fill=gray!25},
+          arrow/.style={-latex, thick},
+          gingafbox/.style={draw, rectangle, rounded corners=4pt, dashed, thick, fill=none}
+        ]
+        \useasboundingbox (-2.5, -5.7) rectangle (2.6, 1.0);
+        \node[outerbox, minimum width=4.3cm, minimum height=4.3cm] (html5_outer) at (0, -1.3) {};
+        \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (html5_outer.north) {Ginga-HTML5};
+
+        \node[block] (htmlapp) {HTML App\\(iframe)};
+        \node[block, below=of htmlapp] (shim) {Fetch Overload\\Shim};
+        \node[block, below=of shim] (flutter) {html.MessageEvent};
+
+        \node[outerbox] (ccws) at (0, -4.95) {};
+        \node[anchor=south, font=\scriptsize\bfseries, inner sep=2pt] at (ccws.north) {\CCWS};
+        \node[innerbox] (router) at (0, -5.2) {Router};
+
+        \draw[arrow] ([xshift=-15pt]htmlapp.south) -- node[left, font=\scriptsize] {1) fetch()} ([xshift=-15pt]shim.north);
+        \draw[arrow] ([xshift=-15pt]shim.south) -- node[left, font=\scriptsize] {2) Intercept} ([xshift=-15pt]flutter.north);
+        \draw[arrow] ([xshift=-35pt]flutter.south) -- node[left, font=\scriptsize] {3) Route} ([xshift=-35pt]router.north);
+        \draw[arrow, dashed] ([xshift=35pt]router.north) -- node[right, font=\scriptsize] {4) Payload} ([xshift=35pt]flutter.south);
+        \draw[arrow, dashed] ([xshift=15pt]flutter.north) -- node[right, font=\scriptsize] {5) Forward} ([xshift=15pt]shim.south);
+        \draw[arrow, dashed] ([xshift=35pt]shim.north) -- node[right, font=\scriptsize] {6) Promise} ([xshift=35pt]htmlapp.south);
+      \end{tikzpicture}
     }
     \caption{Web Client}
   \end{subfigure}
@@ -632,7 +621,6 @@ Figure~\ref{fig:playground_res} presents the visual execution of the sample Ging
 
 \section{Final Remarks}
 \label{sec:remarks}
-
 
 \projectname{} demonstrates that decoupling the Ginga logic and UI components provides a highly portable solution that successfully brings the Ginga middleware to cross-platform environments, including the web. By isolating the NCL state machine and execution engine in pure Dart, the logic runs fully in-memory and can compile directly to JavaScript or native binaries without platform-dependent bindings or multimedia pipeline dependencies. This separation of concerns allows developers to execute and test synchronization logic deterministically on any platform, while rendering is handled independently by the presentation layer. Our architecture resolves the historical portability challenges of traditional Ginga middleware by removing the tight coupling between execution logic and native rendering APIs.
 
