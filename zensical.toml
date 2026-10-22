@@ -4,8 +4,8 @@ site_description = "gingaf: A Cross-Platform Architecture to Execute Ginga-NCL a
 site_author = "Alan L. V. Guedes, Paulo Victor Borges, Daniel Moraes, Sergio Colcher"
 site_url = "https://alanlivio.github.io/paper-webmedia26-gingaf/"
 copyright = "Copyright &copy; 2026 The authors"
-docs_dir = "website/docs"
-site_dir = "website/site"
+docs_dir = "docs"
+site_dir = "site"
 extra_css = ["stylesheets/extra.css"]
 
 [project.plugins]
@@ -13,7 +13,6 @@ search = { enabled = false }
 
 
 [project.theme]
-custom_dir = "website/overrides"
 features = ["navigation.instant", "content.code.copy", "content.code.select"]
 
 [project.theme.font]
