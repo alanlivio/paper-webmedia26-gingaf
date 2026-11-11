@@ -517,15 +517,23 @@ As principais decisões de design são:
 </div>
 
 <div style="background: #e2e7ee; border: 2px solid #b8c4d1; border-radius: 8px; padding: 10px 0; margin: 16px 0 20px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; gap: 24px;">
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <img src="assets/dart.svg" style="height: 32px; width: 32px; object-fit: contain;" />
-    <span style="font-size: 24px; font-weight: 800; color: #1f2328; letter-spacing: 0.5px;">Dart</span>
-  </div>
-  <span style="font-size: 24px; font-weight: 300; color: #8c959f;">/</span>
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <img src="assets/flutter.svg" style="height: 32px; width: 32px; object-fit: contain;" />
-    <span style="font-size: 24px; font-weight: 800; color: #1f2328; letter-spacing: 0.5px;">Flutter</span>
-  </div>
+
+<div style="display: flex; align-items: center; gap: 10px;">
+
+<img src="assets/dart.svg" width="32" height="32" style="height: 32px; width: 32px; object-fit: contain;" />
+<span style="font-size: 24px; font-weight: 800; color: #1f2328; letter-spacing: 0.5px;">Dart</span>
+
+</div>
+
+<span style="font-size: 24px; font-weight: 300; color: #8c959f;">/</span>
+
+<div style="display: flex; align-items: center; gap: 10px;">
+
+<img src="assets/flutter.svg" width="32" height="32" style="height: 32px; width: 32px; object-fit: contain;" />
+<span style="font-size: 24px; font-weight: 800; color: #1f2328; letter-spacing: 0.5px;">Flutter</span>
+
+</div>
+
 </div>
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; height: 160px; margin-top: 12px;">
